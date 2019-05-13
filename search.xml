@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[vue-awesome-swiper使用]]></title>
+    <url>%2F2019%2F05%2F06%2Fvue-awesome-swiper%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[vue-awesome-swiper是基于swiper的一个vue组件，我所使用的版本是&quot;vue-awesome-swiper&quot;: &quot;^3.1.3&quot;, 是基于swiper4的。 安装以及导包1npm i vue-awesome-swiper // 8.5之后的node不需要加 --save 123456789101112131415161718192021&lt;!-- mount with global --&gt;import Vue from &apos;vue&apos;import VueAwesomeSwiper from &apos;vue-awesome-swiper&apos; // require stylesimport &apos;swiper/dist/css/swiper.css&apos; Vue.use(VueAwesomeSwiper, /* &#123; default global options &#125; */)&lt;!-- mount with component --&gt;// require stylesimport &apos;swiper/dist/css/swiper.css&apos; import &#123; swiper, swiperSlide &#125; from &apos;vue-awesome-swiper&apos; export default &#123; components: &#123; swiper, swiperSlide &#125;&#125; 使用123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&lt;template&gt; &lt;swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback"&gt; &lt;!-- slides --&gt; &lt;swiper-slide&gt;I'm Slide 1&lt;/swiper-slide&gt; &lt;swiper-slide&gt;I'm Slide 2&lt;/swiper-slide&gt; &lt;swiper-slide&gt;I'm Slide 3&lt;/swiper-slide&gt; &lt;swiper-slide&gt;I'm Slide 4&lt;/swiper-slide&gt; &lt;swiper-slide&gt;I'm Slide 5&lt;/swiper-slide&gt; &lt;swiper-slide&gt;I'm Slide 6&lt;/swiper-slide&gt; &lt;swiper-slide&gt;I'm Slide 7&lt;/swiper-slide&gt; &lt;!-- Optional controls --&gt; &lt;div class="swiper-pagination" slot="pagination"&gt;&lt;/div&gt; &lt;div class="swiper-button-prev" slot="button-prev"&gt;&lt;/div&gt; &lt;div class="swiper-button-next" slot="button-next"&gt;&lt;/div&gt; &lt;div class="swiper-scrollbar" slot="scrollbar"&gt;&lt;/div&gt; &lt;/swiper&gt;&lt;/template&gt; &lt;script&gt;// require stylesimport 'swiper/dist/css/swiper.css' import &#123; swiper, swiperSlide &#125; from 'vue-awesome-swiper' export default &#123; name: 'carrousel', data() &#123; return &#123; swiperOption: &#123; // some swiper options/callbacks // 所有的参数同 swiper 官方 api 参数 // ... &#125; &#125; &#125;, components: &#123; swiper, swiperSlide &#125;, computed: &#123; swiper() &#123; return this.$refs.mySwiper.swiper &#125; &#125;, mounted() &#123; // current swiper instance // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了 console.log('this is current swiper instance object', this.swiper) this.swiper.slideTo(3, 1000, false) &#125; &#125;&lt;/script&gt;]]></content>
+      <categories>
+        <category>vue-awesome-swiper</category>
+        <category>swiper</category>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue-awesome-swiper</tag>
+        <tag>swiper</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vue问题小结]]></title>
+    <url>%2F2019%2F05%2F05%2Fvue_solution1%2F</url>
+    <content type="text"><![CDATA[使用watch监听路由发生变化后，我们接下来要执行的动作 问题：进入详情页面时，我们需要从路由中拿到参数id去请求数据，进而渲染数据。一般情况下，我们会在详情页面这样写：12345678910111213141516data () &#123; return &#123; article_id = '' &#125;&#125;mounted () &#123; article_id = this.$route.params.id // 1、先从路由中获取传过来的id this.$http.post('/getDetail/', &#123; // 2、发送请求 artical_id: this.artical_id &#125;).then((res) =&gt; &#123; //数据请求成功的回调... &#125;).catch((err) =&gt; &#123; //失败的回调... &#125;)&#125; 我们会把请求获取路由中参数的操作放在mounted()中，但是mounted()只有在第一次点击此路由的时候执行，但是回退到之前的页面，再次点击进来，不会执行mounted()。或者说有圣杯布局的网页，头部和底部固定，内容区域变化，头部有一个导航栏，里面有若干个选项，比如内容1、内容2、内容3。假定内容1、内容2、内容3的路由相同，params参数不同，分别对应为/detail/1`/detail/2/detail/3点击内容1选项之后，路由变为/detail/1`，执行详情组件中的mounted()，获取到数据之后，会在网站主体的内容区域显示相应的内容1。然后再点击内容2选项，页面没有发生变化并且没有显示选项内容2对应的内容。这是因为路由没有发生变化而只是params参数发生了变化，页面不会再次调用mounted()钩子函数，所以我们不因该把获取id的操作写在mounted()中。 解决方案：监听$route对象，如果发生变化，则执行接下来我们要的操作。要注意的是mounted()获取id的方法仍然要写，因为没有挂载之前，组件监听到不$route这个对象，所以第一次点击选项卡拿id的操作要在mounted()中执行。12345678910111213141516data () &#123; return &#123; article_id = '' &#125;&#125;,mounted () &#123; console.log(this.$route.params.id) // 拿到第一次点击选项卡，渲染页面时拿到的id&#125;,watch: &#123; '$route': 'routerAlter' // watch中不用写this，而且变量名都要用''包起来&#125;,methods: &#123; routerAlter () &#123; console.log(this.$route.params.id) &#125;&#125;]]></content>
+      <categories>
+        <category>vue</category>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node.js复习6：数据模型设计]]></title>
+    <url>%2F2019%2F05%2F02%2Fnodejs_review6%2F</url>
+    <content type="text"><![CDATA[数据模型一般存放在model目录中 用户数据模型设计(user.js) 连接数据库 12345const mongoose = require('mongoose')mongoose.connect('mongodb://localhost:27017/node_template', &#123; useCreateIndex: true, useNewUrlParser: true&#125;) 定义模型 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657const UserSchema = new mongoose.Schema(&#123; email: &#123; // 登录账号 type: String, unique: true &#125;, nickname: &#123; // 昵称 type: String, required: true &#125;, password: &#123; // 密码 type: String, set (a) &#123; // 使用bctypt包，实现原理很复杂，但是实现起来很简单 ，直接调库就好 return require('bcrypt').hashSync(a, 10) // 同步方法 指数，指数越高，生成的散列值越复杂，但是用的时间也长时，但是设置的太低，安全性又很低 &#125; &#125;, created_time: &#123; // 创建时间 type: Date, // 传给数据库模块的时候，数据库模块发现这里是个方法，所以它就会调用这个方法，这时候，就会有真正的创建时间了 // 如果这里改为Date.now(), 就会在user.js执行的时候立即调用这个方法,此时拿到的是一个相对在数据库模块创建时 // 的过去时间,也就是相当于一个无效的死值 // 所以注意不要写成Date.now() default: Date.now &#125;, last_modified_time: &#123; // 最后修改时间 type: Date, default: Date.now() &#125;, avatar: &#123; // 头像 type: String, default: '/public/img/youxiang.jpg' &#125;, bio: &#123; // 个人简介 biography type: String, default: '' &#125;, gender: &#123; // 性别 type: Number, enum: [-1, 0, 1], default: -1 &#125;, birthday: &#123; // 生日 type: Date, default: '' &#125;, status: &#123; // 权限状态 type: Number, // 0 没有权限限制 // 1 不可以评论 // 2 不可以登录 // 是否可以评论 //是否可以登录使用 enum: [0, 1, 2], default: 0 &#125;&#125;) 创建模型 12345const User = mongoose.model('User', UserSchema)// 或者直接导出, 适用于这个模块中只有一个模型// module.exports = mongoose.model('User', UserSchema)// 使用模块需要一个变量接收// const User = require('./user') 导出对象 12345module.exports = &#123; User&#125;// 使用模块使用对象来接收，适用于这个模块中含有多个模型，使用模块可以按需导入// const &#123; User &#125; = require('./user')]]></content>
+      <categories>
+        <category>node.js</category>
+        <category>mongoose</category>
+        <category>mongodb</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+        <tag>mongodb</tag>
+        <tag>mongoose</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node.js复习5：bcrypt加密和md5加密]]></title>
+    <url>%2F2019%2F05%2F01%2Fnodejs_review5%2F</url>
+    <content type="text"><![CDATA[注意： md5加密方式：每个字母对应的hash值是相同的，md5有密文对应表。两个人有两个相同的密码，对应的加密后的hash也是一样的。 bcrypt加密方式：对于相同的字符串，加密几次的hash值都是不一样的。也就是说两个人有相同的密码，对应加密后的hash是不一样的。bcrypt更加安全 md5使用注册时加密密码相同的算法，再次对登录时的密码做加密处理，然后当作查询条件去做组合查询，实质是email和password做多条件组合查询。 bcrypt先根据email查出用户的信息，在使用bcrypt.compareSync( req.body.password, user.password)方法对用户登录时输入的密码和查出的用户信息中的密码做一个比对，比对成功则返回true，证明验证成功。实质上在验证密码是否合法之前，已经根据email将所需要的个人信息查出来了。 md5方式： 安装及导入 1npm i blueimp-md5 12var md5 = require('blueimp-md5')const MD5SECRET = 'masia66666' // 配置一个密钥 注册 12345678app.post('/register', async (req, res) =&gt; &#123; req.body.password = md5(md5(req.body.password + MD5SECRET)) // 把密钥拼在密码后面，并且加密两次 const user = await User.creat(&#123; email: req.body.email, password: req.body.password &#125;) res.send(user)&#125;) 返回结果为： 1234567&#123; &quot;_id&quot;: &quot;5cce5d7d4a6a314744d31a30&quot;, &quot;email&quot;: &quot;user20&quot;, &quot;password&quot;: &quot;cf147405dd20224eae703c23ecc3fa8d&quot;, &quot;date&quot;: &quot;2019-05-05T03:50:21.842Z&quot;, &quot;__v&quot;: 0&#125; 登录 12345678app.post('/login', async (req, res) =&gt; &#123; req.body.password = md5(md5(req.body.password + MD5SECRET)) // 把登录时输入的密码加密了一遍，再与数据库中注册时间加密过的密码作比较 const user = await User.findOne(&#123; email: req.body.email, password: req.body.password &#125;) res.send(user)&#125;) 可以对密码加密的这一步写一个中间件 12345const md5MiddleWare = (req, res, next) =&gt; &#123; var password = req.body.password req.password = md5(md5(password + MD5SECRET)) next()&#125; 注册使用中间件 1234567app.post('/register', md5MiddleWare, async (req, res) =&gt; &#123; const user = await User.creat(&#123; email: req.body.email, password: req.password &#125;) res.send(user)&#125;) 登录使用中间件 1234567app.post('/login', md5MiddleWare, async (req, res) =&gt; &#123; const user = await User.findOne(&#123; email: req.body.email, password: req.password &#125;) res.send(user)&#125;) bcrypt加密方式： 安装及其导入 1npm i bcrypt 1const bcrypt = require('bcrypt') 在创建模型时使用，对password进行加密 123456789101112131415const UserSchema = new mongoose.Schema(&#123; email: &#123; type: String, unique: true &#125;, password: &#123; type: String, set (a) &#123; // 在模型调用password属性时，调用这个set方法，a就是password的值 // 使用bctypt包，实现原理很复杂，但是实现起来很简单 ，直接调库就好 return bcrypt.hashSync(a, 10) // 同步方法 指数，指数越高，生成的散列值越复杂，但是花费的时间也长时，但是设置的太低，安全性又很低 &#125; &#125;&#125;)const User = mongoose.model('User', UserSchema) 注册 1234567app.post('/register', async (req, res) =&gt; &#123; const user = await User.create(&#123; email: req.body.email, password: req.body.password &#125;) res.send(user)&#125;) 结果： 1234567&#123; "_id": "5cce6f15b7e8724438c8d621", "email": "user26", "password": "$2b$10$DE.qpGfozZnUJs2r50C/XOw5NdIrg9Hdf2GJen3lzxa3vCoLhMVU6", // 密码已经经过处理 "date": "2019-05-05T05:05:25.817Z", "__v": 0&#125; 登录 1234567891011121314151617181920212223app.post('/login', async (req, res) =&gt; &#123; &lt;!-- 先根据email找用户 --&gt; const user = await User.findOne(&#123; email: req.body.email &#125;) if (!user) &#123; // 一般用户提交的数据有问题，状态吗是422 return res.status(422).send(&#123; "message": "用户名不存在" &#125;) &#125; // 使用bcrypt模块的 compareSync() 方法，对密码进行校验比对，该方法的返回值是true或者false const isPasswordValid = bcrypt.compareSync( req.body.password, // 第一个参数是客户端发起请求的明文密码值 user.password // 第二参数是数据库中的密文密码值 ) if (!isPasswordValid) &#123; return res.status(422).send(&#123; "message": "输入密码错误" &#125;) &#125; res.send(user)&#125;) 结果： 1234567&#123; "_id": "5cce6f15b7e8724438c8d621", "email": "user26", "password": "$2b$10$DE.qpGfozZnUJs2r50C/XOw5NdIrg9Hdf2GJen3lzxa3vCoLhMVU6", "date": "2019-05-05T05:05:25.817Z", "__v": 0&#125;]]></content>
+      <categories>
+        <category>node.js</category>
+        <category>加密方式</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+        <tag>加密方式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mongoose使用]]></title>
+    <url>%2F2019%2F04%2F30%2Fmongoose%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[注意: 以params方式传参的方式编写的接口，params本身也被看做是路由的一部分，所以params参数不能为空，为必传项，不然会找不到接口 以query方式传参的方式编写的接口可以不传 get方式和pos方式，都可以使用json对象格式来传入参数，都用res.body来接收，注意在使用req.body之前要使用app.use(express.json())来配置一下，但是一般使用json对象来传入数据体，使用query方式或者params方式来传入查询条件。 客户端（发送表单格式数据: Content-Type: application/x-www-form-urlencoded）服务端（处理客服端发送的表单格式的数据app.use(express.urlencoded({extended: false}))或app.use(bodyParser.urlencoded({extended: false}))） 客户端（发送json对象格式数据: Content-Type: application/json）服务端（处理客服端发送的json对象格式的数据app.use(express.json())或app.use(bodyParser.json())） 准备:12const mongoose = require('mongoose') // 导包mongoose.connect('mongodb://localhost:27017/express-test', &#123;useNewUrlParser: true&#125;) 创建Schema：12345678910111213const ProductSchema = new mongoose.Schema(&#123; // 创建模型1 title: &#123; type: String, // 类型 &#125;, content: &#123; type: String &#125;&#125;)const Product = mongoose.model('Product', ProductSchema) // 创建模型2module.exports = &#123; Product // 把模型导出去&#125; 删除： 删除集合1Product.db.dropCollection('products') // 模型为Product ，但是在mongodb数据库中保存的集合是 products 查找： 在products集合中查找所有的记录 1const data = Product.find() 在products集合中查找所有的记录，并且只显示两条 1const data = Product.find().limit(2) 在products集合中查找所有的记录，并且只显示两条,并且跳过最前面的1条 1const data = Product.find().skip(1).limit(2) // 将skip()以及limit()结合起来，可以做分页 使用where()进行条件查询 123const data = Product.find().where(&#123; // where()方法的传入参数为对象格式，即使只有一个查询条件，也得写成键值对形式 title: '产品2'&#125;) 使用sort进行排序，可以用来做产品列表页接口 1234const data = Product.find().sort(&#123; _id: 1 // 1 表示正序(从小到大，一般默认都是正序，最新的排在最后面)， -1 表示倒序(从大到小) //这里的 _id 是一个16进制的值，也是可以比较大小的&#125;) 根据id查找，可以用来做详情页的接口 12345app.get('/products/:id', async (req, res) =&gt; &#123; // 这里使用params方式传参数 const data = await Product.findById(req.params.id) res.send(data) // 在req.params中获取参数，不需要中间件再处理req&#125;) 查询全部和条件查询通用接口 12345678app.get('products', await (req, res) =&gt; &#123; if (JSON.strify(req.query) == '&#123;&#125;') &#123; // 查询条件是否为空，若为空，则查询全部 const products = await Product.find() return res.send(products) &#125; const products = await Product.find().where(req.query) // 按照req.query中的约束条件查询 res.send(products)&#125;) 插入： 往products集合中插入多条记录 12345Product.insertMany([ &#123;title: '产品1', content: '这是产品1'&#125;, &#123;title: '产品2', content: '这是产品2'&#125;, &#123;title: '产品3', content: '这是产品3'&#125;]) 使用create() 往集合中插入一条记录 123456789const app = express()app.use(express.json())// 一般添加数据的请求都是post请求，所以要先使用app.use(express.json()) 处理传过来的json数据app.post('/products', async (req, res) =&gt; &#123; const data = req.body // 保存客户端传过来的json数据 const product = await Product.create(req.body) // 这里的await一定要加上，不然会先执行下面的res.send() res.send(product)&#125;) 修改：（一般会使用put或者patch两种请求方式） 先说两个请求方式，put和patch patch表示的是部分修改 put表示的是直接覆盖 先查，后改，再存储123456app.put('/products/:id', async (req, res) =&gt; &#123; const product = await Product.findById(req.params.id) // 先找到指定产品 product.title = req.body.title // 改值，记得在发送请求的时候，要在请求头中加上 "Content-Type": "application/json"，意思是，发送的数据类型是json格式的，这样req.body中才能拿到前台传来的json数据 await product.save() // 保存到集合中也是异步的，所以要加await res.send(product)&#125;) 删除 按照id删除 123456789101112131415&lt;!-- 方法一 --&gt;app.delete('/product/:id', async (req, res) =&gt; &#123; const product = await Product.findById(req.params.id) await product.remove() res.send(&#123; success: true &#125;)&#125;)&lt;!-- 方法二 --&gt;app.post('/deleteProductById', async (req, res) =&gt; &#123; await Product.remove(&#123; _id: req.body.id &#125;) res.send('delete success')&#125;) 按id批量删除 1234567app.post('/deleteByIds', async (req, res) =&gt; &#123; await Product.remove(&#123; _id: &#123; $in: req.body.ids // ids 是多个id组成的数组 &#125; &#125;)&#125;) 按照同一个title批量删除 12345678910111213141516171819&lt;!-- 方法一 --&gt;app.post('/products/:title', async (req, res) =&gt; &#123; const products = await Product.find().where(&#123; title: req.params.title &#125;) console.log(products instanceof Array) // 查询出来的products是一个数组 console.log(products) for (var i = 0; i &lt; products.length; i ++) &#123; await products[i].remove() // 遍历删除 &#125; res.send('remove products complete') // 返回删除成功&#125;)&lt;!-- 方法二 --&gt;app.delete('productByTitle', async (req, res) =&gt; &#123; await Product.remove(&#123; title: req.params.title &#125;) res.send(Delete by title is success.')&#125;)]]></content>
+      <categories>
+        <category>node.js</category>
+        <category>mongodb</category>
+        <category>mongoose</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+        <tag>mongodb</tag>
+        <tag>mongoose</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node.js复习4：token和cookie的使用]]></title>
+    <url>%2F2019%2F04%2F29%2Fnodejs_review4%2F</url>
+    <content type="text"><![CDATA[说明：演示加密方式为 bcrypt 方式 token方式 安装和导入jsonwebtoken 1npm i jsonwebtoken 1const jwt = require('jsonwebtoken') 定义SECRET（这个secret不应该写在一个单独的文件中，比如.igonore等被忽略上传的文件中） 1const SECRET = 'fkdsjfkasjfd' // 相当于一段密码 登录 1234567891011121314151617181920212223242526272829303132333435app.post('/login', async (req, res) =&gt; &#123; const user = await User.findOne(&#123; email: req.body.email &#125;) if (!user) &#123; // 一般用户提交的数据有问题，状态吗是422 return res.status(422).send(&#123; "message": "用户名不存在" &#125;) &#125; &lt;!-- 校验密码是否正确 --&gt; // 使用bcrypt模块的 compareSync() 方法，对密码进行校验比对，该方法的返回值是true或者false const isPasswordValid = require('bcrypt').compareSync( req.body.password, // 第一个参数是客户端发起请求的明文密码值 user.password // 第二参数是数据库中的密文密码值 ) if (!isPasswordValid) &#123; return res.status(422).send(&#123; "message": "输入密码错误" &#125;) &#125; &lt;!-- 根据id生成token --&gt; const token = jwt.sign(&#123; id: String(user._id) // 这里需要注意的是，不要把密码放在token中，可以放一个其他的键，比如_id等。 //这里虽然写的形式是对象键值对的形式，但是实际上，token不是一个对象，而是一段hash值，id不会以键值对的形式出现。 // 解密时使用 jwt.verify(raw, SECRET) 方法，会得到包含id属性的对象，这里raw就是那段hash值。 &#125;, SECRET) // 第二个参数为secret，这个secret不应该出现在代码库中，应该是一个环境变量之类的东西，应该是在.ignore中被忽略上传的东西 // 这个secret应该是全局保持唯一的 res.send(&#123; user, token: token &#125;) &#125;) 返回给客户端的结果为 12345678910&#123; "user": &#123; "_id": "5cce3ac57879e13fc45d3511", "email": "user3", "password": "$2b$10$/PJRuI8mnOUpMkB5an8iKOOYqUFAyhBrV6FImTUuU7mmGG6P9Ys5a", "__v": 0 &#125;, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjY2UzYWM1Nzg3OWUxM2ZjNDVkMzUxMSIsImlhdCI6MTU1NzAxOTMzNn0.22ImaDk_1dkMkEbezu0ByrwkBGXPrlc7Ox-ORJ75oUQ" // 后面的这段hash值就是上面jwt对user._id加密生成的，并且每次执行发起登录请求时，会根据相同的user._id生成不同的token&#125; 进入个人中心 客户端 123post &#123;&#123;url&#125;&#125;/profileContent-Type: application/jsonAuthorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjY2UzYWM1Nzg3OWUxM2ZjNDVkMzUxMSIsImlhdCI6MTU1NzAxOTMzNn0.22ImaDk_1dkMkEbezu0ByrwkBGXPrlc7Ox-ORJ75oUQ 服务端 12345678app.post('/profile', async (req, res) =&gt; &#123; var raw = String(req.headers.authorization).split(' ').pop() console.log(jwt.verify(raw, SECRET)) // &#123; id: '5cce6f15b7e8724438c8d621', iat: 1557034387 &#125; const &#123; id &#125; = jwt.verify(raw, SECRET) // 当初用_id做的密钥，所以现在解密_id，再用_id做条件查找 const user = await User.findById(id) res.send(user)&#125;) 可以提取中间件 1234567// 用户登录获取信息中间件const authMiddleware = async (req, res, next) =&gt; &#123; var raw = String(req.headers.authorization).split(' ').pop() const &#123; id &#125; = jwt.verify(raw, SECRET) req.user = await User.findById(id) // 将查询的结果以属性的方式保存在req中 next() &#125; 服务端改写为 123app.post('/profile', authMiddleware, async (req, res) =&gt; &#123; res.send(req.user)&#125;) cookie方式 安装和导入express-session 1npm i express-session 1const session = require('express-session') 配置中间件 123456&lt;!-- 中间件一定要放在使用之前 --&gt;app.use(session(&#123; secret: 'keyboard cat', // 密钥 resave: false, saveUninitialized: true &#125;)) 登录 123456789101112131415161718192021222324252627282930app.post('/login', async (req, res) =&gt; &#123; const user = await User.findOne(&#123; email: req.body.email &#125;) if (!user) &#123; // 一般用户提交的数据有问题，状态吗是422 return res.status(422).send(&#123; "message": "用户名不存在" &#125;) &#125; &lt;!-- 校验密码是否正确 --&gt; // 使用bcrypt模块的 compareSync() 方法，对密码进行校验比对，该方法的返回值是true或者false const isPasswordValid = require('bcrypt').compareSync( req.body.password, // 第一个参数是客户端发起请求的明文密码值 user.password // 第二参数是数据库中的密文密码值 ) if (!isPasswordValid) &#123; return res.status(422).send(&#123; "message": "输入密码错误" &#125;) &#125; &lt;!-- 成功验证后，将查询到的用户放入cookie --&gt; req.session.user = user res.status(200).json(&#123; // 返回成功信息 err_code: 200, message: 'ok' &#125;)&#125;) 进入个人中心 1234app.post('/profile', async (req, res) =&gt; &#123; console.log(req.session) res.send(req.session)&#125;) 返回结果 12345&#123; _id: '5cce56bbecd3734398851c80', email: 'user12', password: '123456', date: '2019-05-05T03:21:31.457Z', __v: 0 &#125;]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node.js复习3：使用原生ajax与jquery版本ajax向node服务器请求数据对比]]></title>
+    <url>%2F2019%2F04%2F28%2Fnodejs_review3%2F</url>
+    <content type="text"><![CDATA[一直以来没有搞清楚使用原生js以post方式发起ajax请求时，是怎么向服务端发送请求参数的。在使用$.ajax()方法时，不管是get方式，还是post方式，都是可以以对象的方式向服务端提交参数的。但原生js的两种发送请求的方式，发送的参数都是查询字符串方式的，应该叫做表单格式的数据吧。 $.ajax()发送请求 get方式 123456789101112var data = &#123; email: '916527363@qq.com', password: '123456'&#125;$.ajax(&#123; url: 'http://localhost:8888/login', // 这里要注意的是，既然在已经在传入对象中写了的属性，不要在这里重复写，不会覆盖的，而是会追加 type: 'get', data: data, success: function (data) &#123; console.log(data) &#125;&#125;) post方式 123456789101112var data = &#123; email: '916527363@qq.com', password: '123456'&#125;$.ajax(&#123; url: 'http://localhost:8888/login', type: 'post', data: data, success: function (data) &#123; console.log(data) &#125;&#125;) 原生js发送请求 get方式 1234567891011function ajaxGet () &#123; var xhr = new XMLHttpRequest() xhr.open("GET", "http://localhost:8888/login?email=916527363@qq.com&amp;password=123456") // 原生get方式的ajax带参数发送请求的时候，只能将参数以查询字符串的方式缀在路由后面 xhr.onreadystatechange = function () &#123; if(xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123; console.log(xhr.responseText) // xhr.responseText为响应数据 &#125; &#125; xhr.send() // 原生的get请求不能在这里传参数&#125; post方式 1234567891011121314151617// 先收集数据var email = "916527363@qq.com"var password = "123456"// 将收集到的数据组合成查询字符串var msg = "email="+email+"&amp;password="+passwordfunction ajaxPost () &#123; var xhr = new XMLHttpRequest() xhr.open("POST", "http://localhost:8888/login") xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // 声明了数据格式是表单格式的 // 发送post请求，必须要写这一句，不然xhr.send(msg)不生效 xhr.onreadystatechange = function () &#123; if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123; console.log(xhr.responseText) // xhr.responseText为响应数据 &#125; &#125; xhr.send(msg) // 即使是post请求，这里传的参数依然为查询字符串形式，不能是对象形式的参数&#125; 在node服务器中在node服务器中，完全不需要关心前台是提交的参数是字符串类型的还是对象类型的，只需要知道，前台发送的请求是get方式的，还是post方式的 准备：创建一个基于express框架的node服务器 123456789101112var express = require('express')var url = require('url')var query = url.paese()var bodyParser = require('body-parser') // 该模块用来解析post提交的参数对象app.use(bodyParser.urlencoded(&#123;extended: false&#125;)) // 处理传过来的表单数据app.use(bodyParser.json()) // 处理传过来的json数据app.listen(3000, function () &#123; console.log('app is running at 3000')&#125;) 如果前台提交的请求是get方式的，那么后台就需要使用 1234567app.get('/login', function (req, res) &#123; // 将req.url做处理（其中参数true的作用是，直接将查询字符串转化为了对象） var urlObj = url.parse(req.url, true) // 拿到参数对象 var queryObj = urlObj.query console.log(queryObj)&#125;) 如果前台提交的请求是get方式的，那么后台就需要使用 12345app.post('/login', function (req, res) &#123; // 拿到参数对象 var queryObj = req.body console.log(queryObj)&#125;)]]></content>
+      <categories>
+        <category>node.js</category>
+        <category>ajax</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[let关键字使用]]></title>
+    <url>%2F2019%2F04%2F28%2Flet%E5%85%B3%E9%94%AE%E5%AD%97%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[let关键字定义之后不能修改，let关键字有作用域限制 12345678910&lt;div class="nav"&gt; &lt;button&gt;选项一&lt;/button&gt; &lt;button&gt;选项二&lt;/button&gt; &lt;button&gt;选项三&lt;/button&gt;&lt;/div&gt;&lt;div class="con"&gt; &lt;p&gt;内容一&lt;/p&gt; &lt;p&gt;内容二&lt;/p&gt; &lt;p&gt;内容三&lt;/p&gt;&lt;/div&gt; 12345678910111213141516171819202122232425262728293031323334// 使用常规的方式，变量声明和定义全部使用var关键字var buttons = document.querySelectorAll('button');var ps = document.querySelectorAll('p');for (var i = 0; i &lt; buttons.length; i ++) &#123; buttons[i].index = i; buttons[i].onclick = function () &#123; console.log(this.index); // 在这里只能通过自定义属性index来拿到外部循环的i for (var i = 0; i &lt; buttons.length; i ++) &#123; buttons[i].className = ''; ps [i].className = ''; &#125; this.className = 'active'; ps[this.index].className = 'active' &#125;&#125;// 使用const关键限制i的作用域var buttons = document.querySelectorAll('button');var ps = document.querySelectorAll('p')for (let i = 0; i &lt; buttons.length; i ++) &#123; buttons[i].onclick = function () &#123; console.log(i) // 这里可以拿到循环中的i for (let i = 0; i &lt; buttons.length; i ++) &#123; buttons[i].className = ''; ps[i].className = ''; &#125; this.className = 'active'; ps[i].className = 'active'; &#125;&#125;]]></content>
+      <categories>
+        <category>ES6</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node.js复习2]]></title>
+    <url>%2F2019%2F04%2F28%2Fnodejs_review2%2F</url>
+    <content type="text"><![CDATA[今天主要来复习一下node.js内置模块的用法 http模块123456789101112131415var http = require('http')// 支持链式调用var server = http .createServer( function (req, res) &#123; res.write('Hello World!') res.writeHead(404, 'not found', &#123; 'Content-Type': 'text/html;charset=utf-8', 'set-Cookie': 'mycookie1=value1', 'Access-Control-Allow-Origin', 'http://localhost' &#125;) res.end() &#125;) .listen(3000, function () &#123; &#125;) // 在listen中拿不到req 和 res url模块 123456var url = require('url')var a = 'http://192.168.15.138:8080/courses/query?credit=2&amp;name=Java'var urlObj = url.parse(a) // 将整个字符串url变成对象var pathname = urlObj.pathname // '/courses/query'var queryStr = urlObj.query // 'credit=2&amp;name=Java'var queryObj = url.parse(a, true).query // 将整个查询字符串'credit=2&amp;name=Java'转化为对象 &#123; crdit: 2, name: 'Java'&#125; querystring模块 123var querystring = require('querystring')var queryObj = querystring.parse(queryStr) // 将查询字符串'credit=2&amp;name=Java'转化为参数对象var queryStr2 = querystring.stringify(queryObj) // 同时，当然也可以将参数对象转化为字符串 path模块 12345678var path = require('path')var a = '/home/masia/a.txt'console.log('basename:', path.basename(a)) // basename: a.txtconsole.log('dirname:', path.dirname(a)) // dirname: c:/home/masiaconsole.log('extname:', path.extname(a)) // extname: .txtconsole.log('isAbsolute', path.isAbsolute(a)) // isAbsolute trueconsole.log('__dirname', path.join(__dirname)) // __dirname 当前文件所在目录 fs模块 123456789101112131415161718var fs = require('fs')// 文件读取方法fs.readFile(path.join(__dirname, './a.txt'), function (err, data) &#123; if (err) &#123; return res.end('read file err') &#125; else &#123; console.log(data) // 这样读取出来的文件buffer 的 16进制格式的 console.log(data.toString()) // 需要使用x.toString()方法来将buffer格式的数据转化为字符串形式的数据 &#125;&#125;)// 目录读取方法fs.readdir(path.join(__dirname), function (err, files) &#123; if (err) &#123; console.log('can not find this directory') &#125; else &#123; console.log(files) // 输出的是path.join(__dirname)这个目录下面的所有目录名以及文件名 &#125;&#125;) res.writeHead()和res.setHeader()的区别 writeHead：该方法被调用时发送响应头 writeHead必须要在发送数据之前调用 12345res.writeHead(200, 'normal', &#123; 'Content-Type': 'text/plain;charset=utf-8', 'set-Cookie': ['mycookie1=value1', 'mycookie2=value2'] 'Access-Control-Allow-Origin': 'http://localhost'&#125;) setHeader：write方法第一次被调用时发送响应头 1234res.statusCode = 200res.setHeader('Content-Type', 'text/plain')res.setHeader('Access-Contorl-Allow-Origin', 'http://localhost')res.setHeader('Set-cookie', ['mycookie1=value1', 'mycookie2=value2']) res.end()与res.send()区别 res.end()只能发送string或者buffer类型的数据，是node.js的内置方法 res.send()能发送对象]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node.js复习1]]></title>
+    <url>%2F2019%2F04%2F26%2Fnodejs_review1%2F</url>
+    <content type="text"><![CDATA[深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。 归根结底是探究module.exports与exports的关系，以及对象引用的指向问题系统默认exports = module.exports，也就是说他们两个指向了同一个对象，下面来看三种情况：假设在文件demo.js中：12345var a = 2;function fun () &#123; console.log('this is a function')&#125;var b = 3 情况一： 123module.exports.a = amodule.exports.fun = funexports.b = b 那么module.exports和exports向外暴露的是同一个对象，在test.js文件中访问demo.js： 12var demo = require('./demo')console.log(demo) 并在控制台打印，得到： 1&#123;a: a, fun: [Function: fun], b: 3&#125; 情况二： 12345module.exports = &#123; //这样的写法，实际上已经将module.export指向一个新的对象了，但是exports指向的还是原来默认的对象 a: a, fun: fun&#125;exports.b = b //但是exports指向的是之前默认的对象 最后向外暴露的是module.exports实际指向的对象，此时exports.x也失去了向外部暴露属性的功能，在test.js文件中访问demo.js 1234var demo = require('./demo')var &#123;b&#125; = require('./demo')console.log(demo)console.log(b) 在控制台得到的结果为： 12&#123;a: a, fun: [Funtion: fun]&#125;undefined 情况三： 使用module.exports整体暴露 12345module.exports = &#123; a: a, fun: fun, b: b&#125; 在test中按需引入 123var &#123;a, fun&#125; = require('./demo')console.log(a)console.log(fun) 在控制台得到的结果为： 1212[Function: fun] 注意： 如果要使用module.exports，在使用时尽量整体引入。 如果要使用exports.x，千万不要在同一个文件中module.exports = {}，但是可以使用module.exports.xxx]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[sublime的快捷键]]></title>
+    <url>%2F2019%2F04%2F26%2Fsublime%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[sublime使用熟练的使用编辑器的快捷键，能大大加快开发速度，也能让自己尽快脱离鼠标，熟悉服务器远程开发。 整行删除ctrl+x或ctrl+shift+k 跳到下一行ctrl+enter 跳到上一行ctrl+shift+enter 一次选中一个词shift+ctrl+右箭头 一次选中一个字或者字母shift+右箭头 光标一次跳转一个词ctrl+右箭头 单词转大写ctrl+x 单词转小写ctrl+y 整行选中，并且光标跳到下一行ctrl+l 整行移动ctrl+shift+上箭头 整行向右移动一个缩进ctrl+] 整行向左移动一个缩进ctrl+[ 整行复制ctrl+c，整行粘贴ctrl+v 将你刚刚输入的单词变成标签ctrl+e 跳转到文档开头ctrl+home 跳转到文档末尾ctrl+end 跳转到上一个编辑处alt+- 跳转到下一个编辑处alt+shift+- 自定义长度收起代码ctrl+shift+{，自定义长度展开代码ctrl+shift+}]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>sublime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[node安装引发的惨案]]></title>
+    <url>%2F2019%2F04%2F25%2Fnode-install%2F</url>
+    <content type="text"><![CDATA[node安装本人在学习node初期，按照网上的教程傻瓜式的给win10安装了node，当时没有真正理会每一步安装的目的和意义，直接导致后期在使用npm的时候出现了各种各样的问题（尤其是在npm全局安装的时候） ps: 如果你的机器已经安装了nodejs，而且在npm全局安装是出现了各种各样的问题（比如找不到npm指向的全局安装目录，安装权限问题），那么这篇文章可能会找到一些问题的答案，或者可以完全卸载重新安装。 在windows中完全移除nodejs（npm包含在nodejs中） 在 【windows设置&gt;应用】 中，找到nodejs，然后点击卸载 删除所有与nodejs相关的文件目录以及文件C:\Program Files (x86)\NodejsC:\Program Files\NodejsC:\Users{User}\AppData\Roaming\npm（或%appdata%\npm）C:\Users{User}\AppData\Roaming\npm-cache（或%appdata%\npm-cache）以及之前的nodejs的安装目录（比如我刚开始将nodejs安装在了F:\nodejs中，那就将这个目录删除） 删除所有与node或者npm相关的环境变量一般包括用户环境变量中的PATH和系统变量中的NODE_PATH、Path（注意：只要看见包含npm或者node就大胆把它给删除了，不管是大写的还是小写的） 在windows中安装nodejs 打开nodejs官网 https://nodejs.org/en/ 选择Download for Windows (x64)，LTS版本，此版为稳定版，点击下载，得到一个msi格式的nodejs安装文件 在你经常存放软件的磁盘中先建一个nodejs文件夹，比如：F:\nodejs 点击刚刚下载的nodejs安装文件，记得在选择安装目录的时候选择F:\nodejs，一路next，直到finish 此时，你使用win+R打开命令行工具，输入指令node -v,已经可以看见nodejs的版本号了，输入指令npm -v,同样可以看见npm的版本号,证明你已经成功安装了nodejs 接下来我们需要配置一些nodejs环境变量，也就是设置一下你的npm工具在全局安装一些例如webpack工具的时候，安装在哪里。 注意：这里的配置非常重要，因为你安装完nodejs之后，默认设置以后的全局安装目录在C:\Program Files\Nodejs这个文件夹中，所以我们在以后全局安装的时候，就会因为权限的问题而安装失败，亲测管理员身份安装也会失败。。。（这个问题困扰了我好久） 在F:\nodejs\中新建两个文件夹，一个名为node_global，另外一个名为node_cache node_global就是以后全局安装的目录，node_cache就是以后全局安装时产生日志文件目录 设置环境变量 点击用户环境变量中的变量PATH，找到C:\User\你的计算机用户名\AppData\Roaming\npm,点击编辑，编辑为F:\nodejs\node_global 在系统环境变量中新建一个名为NODE_PATH的变量，设置变量值为F:\nodejs\node_global\node_modules后面这个node_modules目录会在全局安装时自动生成。 打开命令行工具输入npm config set prefix &quot;F:\nodejs\node_global&quot;以及npm config set cache &quot;F:\nodejs\node_cache&quot; 尝试全局安装nodemon，npm i -g nodemon，等待安装完成之后，再输入nodemon -v,在命令行显示版本号，证明全局安装成功 ps：打开【F:\nodejs\node_global】目录你会看到刚刚安装的nodemon相关的文件，再点击 其中的node_modules文件夹，你会看到有一个名为nodemon的文件夹。]]></content>
+      <categories>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>install</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[谷歌浏览器访问助手安装]]></title>
+    <url>%2F2019%2F04%2F25%2Fchrome-plugins%2F</url>
+    <content type="text"><![CDATA[在给同事安装谷歌浏览器插件的时候遇到的问题 本来想装一个vue-devtools,但是我们知道这个插件虽然在谷歌自带的商店里面有，但是没有谷歌访问助手，这个商店是访问不到的，所有先要安装谷歌访问助手。 1、下载谷歌访问助手将下载的文件解压得到一个扩展名为.crx的文件，先将这个文件直接拖到谷歌扩展程序窗口中，看看能不能安装成功，如果能，直接跳到第3步。如果不能，将这个文件的扩展名改为.zip，再进行解压，得到一个文件夹，里面包含了好多文件夹和文件。 2、安装打开谷歌浏览器的更多工具 &gt; 扩展程序，并且打开开发者模式按钮，点击左侧的加载已解压的扩展程序，找到刚刚解压完成的文件夹，成功！ 3、访问谷歌网上应用商店找到谷歌商店，点击，发现可以打开了，在搜索框输入vue，就会在右侧找到Vue.js devtools，点击添加至Chrome即可。]]></content>
+      <categories>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>闲杂</tag>
+        <tag>Install</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[masia]]></title>
+    <url>%2F2019%2F04%2F23%2Fmasia%2F</url>
+    <content type="text"><![CDATA[hello world]]></content>
+      <categories>
+        <category>关于我</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+</search>
