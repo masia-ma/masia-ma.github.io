@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="masia">
 <meta property="og:description" content="注意： md5加密方式：每个字母对应的hash值是相同的，md5有密文对应表。两个人有两个相同的密码，对应的加密后的hash也是一样的。 bcrypt加密方式：对于相同的字符串，加密几次的hash值都是不一样的。也就是说两个人有相同的密码，对应加密后的hash是不一样的。bcrypt更加安全">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T09:33:43.374Z">
+<meta property="og:updated_time" content="2019-05-16T07:50:28.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node.js复习5：bcrypt加密和md5加密">
 <meta name="twitter:description" content="注意： md5加密方式：每个字母对应的hash值是相同的，md5有密文对应表。两个人有两个相同的密码，对应的加密后的hash也是一样的。 bcrypt加密方式：对于相同的字符串，加密几次的hash值都是不一样的。也就是说两个人有相同的密码，对应加密后的hash是不一样的。bcrypt更加安全">
@@ -407,7 +407,7 @@
 <ul>
 <li>注册</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">'/register'</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  req.body.password = md5(md5(req.body.password + MD5SECRET)) <span class="comment">// 把密钥拼在密码后面，并且加密两次</span></span><br><span class="line">  <span class="keyword">const</span> user = <span class="keyword">await</span> User.creat(&#123;</span><br><span class="line">    email: req.body.email,</span><br><span class="line">    password: req.body.password</span><br><span class="line">  &#125;)</span><br><span class="line">  res.send(user)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">'/register'</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  req.body.password = md5(md5(req.body.password + MD5SECRET)) <span class="comment">// 把密钥拼在密码后面，并且加密两次</span></span><br><span class="line">  <span class="keyword">const</span> user = <span class="keyword">await</span> User.create(&#123;</span><br><span class="line">    email: req.body.email,</span><br><span class="line">    password: req.body.password</span><br><span class="line">  &#125;)</span><br><span class="line">  res.send(user)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>返回结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;_id&quot;: &quot;5cce5d7d4a6a314744d31a30&quot;,</span><br><span class="line">  &quot;email&quot;: &quot;user20&quot;,</span><br><span class="line">  &quot;password&quot;: &quot;cf147405dd20224eae703c23ecc3fa8d&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2019-05-05T03:50:21.842Z&quot;,</span><br><span class="line">  &quot;__v&quot;: 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -478,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/30/mongoose使用/" rel="next" title="mongoose使用">
-                <i class="fa fa-chevron-left"></i> mongoose使用
+              <a href="/2019/05/01/vue_solution1/" rel="next" title="vue问题小结">
+                <i class="fa fa-chevron-left"></i> vue问题小结
               </a>
             
           </div>
@@ -569,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,10 +579,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">16</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -590,10 +590,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">15</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
