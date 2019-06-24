@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="masia">
 <meta property="og:description" content="定义类或者对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-30T10:38:34.856Z">
+<meta property="og:updated_time" content="2019-06-24T04:59:53.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js设计模式">
 <meta name="twitter:description" content="定义类或者对象">
@@ -423,6 +423,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fucntion Person (id, name) &#123;</span><br><span class="line">  <span class="keyword">this</span>.id = id;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样的方式，在创建构造函数的时候，showName保存在构造函数的原型链中，没有浪费内存空间，不同的实例通过隐式原型链来调用showName方法。</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<ul>
+<li>引入知识点：对象的方法借用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">'masia'</span>,</span><br><span class="line">  age: <span class="number">19</span>,</span><br><span class="line">  getName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">  &#125;,</span><br><span class="line">  modifyInfo: <span class="function"><span class="keyword">function</span> (<span class="params">newName, newAge</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = newName</span><br><span class="line">    <span class="keyword">this</span>.age = newAge</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  name: <span class="string">'laoliu'</span>,</span><br><span class="line">  age: <span class="number">23</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// obj2借用obj1中的方法，无参数时：</span></span><br><span class="line">obj.getName.call(obj2)</span><br><span class="line">obj.getName.apply(obj2)</span><br><span class="line"><span class="comment">// obj2借用obj1中的方法，有参数时：</span></span><br><span class="line">obj.modifyInfo.call(obj2, <span class="string">'Lawrence'</span>, <span class="number">25</span>) <span class="comment">// 使用call，依次传参</span></span><br><span class="line">obj.modifyInfo.apply(obj2, [<span class="string">'Lawrence'</span>, <span class="number">25</span>]) <span class="comment">// 使用apply, 传入一个参数数组</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -548,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -559,7 +562,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -570,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
