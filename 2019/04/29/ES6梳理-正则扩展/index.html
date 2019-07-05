@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="ES6,">
+  <meta name="keywords" content="ES6,正则扩展,">
 
 
 
@@ -78,14 +78,14 @@
 
 
 <meta name="description" content="正则扩展 正则对象ES5中的正则对象1234567891011&amp;#123;  // 第一种写法： 第一个参数是字符串，第二个参数是修饰符  let regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;); // 第二个参数i是忽略大小写的意思  // 第二种写法：只有一个参数：正则表达式  let regex2 = new RegExp(/xyz/i);  // 当然还可以使用字面量的方式去">
-<meta name="keywords" content="ES6">
+<meta name="keywords" content="ES6,正则扩展">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6梳理-正则扩展">
 <meta property="og:url" content="http://yoursite.com/2019/04/29/ES6梳理-正则扩展/index.html">
 <meta property="og:site_name" content="masia">
 <meta property="og:description" content="正则扩展 正则对象ES5中的正则对象1234567891011&amp;#123;  // 第一种写法： 第一个参数是字符串，第二个参数是修饰符  let regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;); // 第二个参数i是忽略大小写的意思  // 第二种写法：只有一个参数：正则表达式  let regex2 = new RegExp(/xyz/i);  // 当然还可以使用字面量的方式去">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T03:37:05.702Z">
+<meta property="og:updated_time" content="2019-07-05T03:52:16.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6梳理-正则扩展">
 <meta name="twitter:description" content="正则扩展 正则对象ES5中的正则对象1234567891011&amp;#123;  // 第一种写法： 第一个参数是字符串，第二个参数是修饰符  let regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;); // 第二个参数i是忽略大小写的意思  // 第二种写法：只有一个参数：正则表达式  let regex2 = new RegExp(/xyz/i);  // 当然还可以使用字面量的方式去">
@@ -352,6 +352,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/正则扩展/" itemprop="url" rel="index">
+                    <span itemprop="name">正则扩展</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -386,7 +397,7 @@
 <li>正则对象<br>ES5中的正则对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 第一种写法： 第一个参数是字符串，第二个参数是修饰符</span></span><br><span class="line">  <span class="keyword">let</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'xyz'</span>, <span class="string">'i'</span>); <span class="comment">// 第二个参数i是忽略大小写的意思</span></span><br><span class="line">  <span class="comment">// 第二种写法：只有一个参数：正则表达式</span></span><br><span class="line">  <span class="keyword">let</span> regex2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/i</span>);</span><br><span class="line">  <span class="comment">// 当然还可以使用字面量的方式去定义一个正则对象 let regex2 = /xyz/i;</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex.flags) <span class="comment">// flags是ES6新增加的一个获取正则对象修饰符的属性，输出正则对象的修饰符</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex2.flags) <span class="comment">// 输出正则表达式的修饰符</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex.test(<span class="string">'xyz123'</span>), regex2.test(<span class="string">'xyz123'</span>))</span><br><span class="line">  <span class="comment">// 输出： true true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>ES6中增加了一种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数是正则表达式，还能有第二个参数</span></span><br><span class="line"><span class="comment">// ES6允许第一个参数是正则表达式，也允许第二个参数去修改正则表达式的修饰符</span></span><br><span class="line"><span class="keyword">let</span> regex3 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/ig</span>, <span class="string">'i'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(regex3.flags) <span class="comment">// 输出 'i'</span></span><br></pre></td></tr></table></figure></p>
+<p>ES6中增加了一种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数是正则表达式，还能有第二个参数</span></span><br><span class="line"><span class="comment">// ES6允许第一个参数是正则表达式，也允许第二个参数去覆盖正则表达式的修饰符</span></span><br><span class="line"><span class="keyword">let</span> regex3 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/ig</span>, <span class="string">'i'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(regex3.flags) <span class="comment">// 输出 'i'</span></span><br></pre></td></tr></table></figure></p>
 <ol start="2">
 <li>修饰符<br>ES5中常见的修饰符是<code>i</code>和<code>g</code>,ES6增加了<code>y</code>和<code>u</code></li>
 </ol>
@@ -395,7 +406,13 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> s = <span class="string">'bbb_bb_b'</span>;</span><br><span class="line">  <span class="keyword">let</span> a1 = <span class="regexp">/b+/g</span>;</span><br><span class="line">  <span class="keyword">let</span> a2 = <span class="regexp">/b+/y</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'one'</span>, a1.exec(s), a2.exec(s)); <span class="comment">// 第一次执行</span></span><br><span class="line">  <span class="comment">// 输出：都匹配到了第一个字符'bbb'</span></span><br><span class="line">  <span class="comment">// ["bbb", index: 0, input: "bbb_bb_b", groups: undefined] </span></span><br><span class="line">  <span class="comment">// ["bbb", index: 0, input: "bbb_bb_b", groups: undefined]</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'two'</span>, a1.exec(s), a2.exec(s)); <span class="comment">// 第二次执行</span></span><br><span class="line">  <span class="comment">// 输出：使用g修饰符的匹配到了 'bb', 使用y修饰符的没有匹配到，并且返回了null，即没有匹配成功</span></span><br><span class="line">  <span class="comment">// ["bb", index: 4, input: "bbb_bb_b", groups: undefined]</span></span><br><span class="line">  <span class="comment">// null</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'three'</span>, a1.exec(s), a2.exec(s)); <span class="comment">// 第三次执行</span></span><br><span class="line">  <span class="comment">// 输出：使用g修饰符的匹配到了 'b', 使用y修饰符的输出结果和第一次相同</span></span><br><span class="line">  <span class="comment">//["b", index: 7, input: "bbb_bb_b", groups: undefined]</span></span><br><span class="line">  <span class="comment">//["bbb", index: 0, input: "bbb_bb_b", groups: undefined]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ES6中的sticky属性, sticky 黏(性)的;一面带黏胶的;闷热的</span></span><br><span class="line">  <span class="built_in">console</span>.log(a1.sticky, a2.sticky) <span class="comment">// 来判断正则对象是否开启了带y的修饰符的作用</span></span><br><span class="line">  <span class="comment">//          false      true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>u</code>修饰符<br>u其实是unicode的缩写</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'u-1'</span>, /^\uD830/.test(<span class="string">'\uD830\DC2A'</span>)); <span class="comment">// true</span></span><br><span class="line">                              <span class="comment">// 不加u会把后面的内容当两个字符去解析</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'u-2'</span>, /^\uD830/u.test(<span class="string">'\uD830\DC2A'</span>)); <span class="comment">// false</span></span><br><span class="line">                            <span class="comment">//加u会把后面test中的一连串内容当作一个字符去解析</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="regexp">/\u&#123;61&#125;/</span>.test(<span class="string">'a'</span>));</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="regexp">/\u&#123;61&#125;/u</span>.test(<span class="string">'a'</span>)); <span class="comment">// 如果&#123;&#125;内放的是unicode编码，且你要识别unicode编码，则一定要加u</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在unicode中，一个编码组合为两个字节，表示一个字符</p>
+<ul>
+<li>小知识点<br>在ES5中,<code>.</code>代表任意一个字符，但是其实他只能匹配两个字节的字符 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`\u&#123;20BB7&#125;`</span>) <span class="comment">// "𠮷"</span></span><br><span class="line">              <span class="comment">// unicode的编码超过了4位，那也就意味着这个字符的大小超过了2字节</span></span><br><span class="line">  <span class="keyword">let</span> s = <span class="string">'𠮷'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="regexp">/^.$/</span>.test(s)) <span class="comment">// false, 说明"."并没有成功匹配到"𠮷"这个字符，那也就验证了"."只能匹配2字节的unicode字符</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="regexp">/^.$/u</span>.test(s)) <span class="comment">// true, 但是加上正则表达式修饰符"u","."就可以匹配这个超过4位的unicode字符了</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="regexp">/𠮷&#123;2&#125;/</span>.test(<span class="string">'𠮷𠮷'</span>)) <span class="comment">// false ,不加u修饰符，识别不了超过2字节的字符</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="regexp">/𠮷&#123;2&#125;/u</span>.test(<span class="string">'𠮷𠮷'</span>)) <span class="comment">// true ,加了u修饰符，能够识别超过2字节的字符</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 总结："."只能匹配2字节的unicode字符，如果我们要匹配的字符串中有超过2字节的unicode字符，请加u</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -416,6 +433,8 @@
           
             <a href="/tags/ES6/" rel="tag"># ES6</a>
           
+            <a href="/tags/正则扩展/" rel="tag"># 正则扩展</a>
+          
         </div>
       
 
@@ -427,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/29/正则表达式/" rel="next" title="正则表达式">
-                <i class="fa fa-chevron-left"></i> 正则表达式
+              <a href="/2019/04/29/js遍历数组的方法/" rel="next" title="数组和对象的深度复制">
+                <i class="fa fa-chevron-left"></i> 数组和对象的深度复制
               </a>
             
           </div>
@@ -437,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/29/js遍历数组的方法/" rel="prev" title="数组和对象的深度复制">
-                数组和对象的深度复制 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/29/正则表达式/" rel="prev" title="正则表达式">
+                正则表达式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -518,7 +537,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +548,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -540,7 +559,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
