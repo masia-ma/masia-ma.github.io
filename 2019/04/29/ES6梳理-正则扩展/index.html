@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="正则扩展 正则对象ES5中的正则对象1234567891011&amp;#123;  // 第一种写法： 第一个参数是字符串，第二个参数是修饰符  let regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;); // 第二个参数i是忽略大小写的意思  // 第二种写法：只有一个参数：正则表达式  let regex2 = new RegExp(/xyz/i);  // 当然还可以使用字面量的方式去">
+<meta name="description" content="正则扩展 正则对象ES5中的正则对象">
 <meta name="keywords" content="ES6,正则扩展">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6梳理-正则扩展">
 <meta property="og:url" content="http://yoursite.com/2019/04/29/ES6梳理-正则扩展/index.html">
 <meta property="og:site_name" content="masia">
-<meta property="og:description" content="正则扩展 正则对象ES5中的正则对象1234567891011&amp;#123;  // 第一种写法： 第一个参数是字符串，第二个参数是修饰符  let regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;); // 第二个参数i是忽略大小写的意思  // 第二种写法：只有一个参数：正则表达式  let regex2 = new RegExp(/xyz/i);  // 当然还可以使用字面量的方式去">
+<meta property="og:description" content="正则扩展 正则对象ES5中的正则对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-05T03:52:16.104Z">
+<meta property="og:updated_time" content="2019-07-07T04:06:34.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6梳理-正则扩展">
-<meta name="twitter:description" content="正则扩展 正则对象ES5中的正则对象1234567891011&amp;#123;  // 第一种写法： 第一个参数是字符串，第二个参数是修饰符  let regex = new RegExp(&apos;xyz&apos;, &apos;i&apos;); // 第二个参数i是忽略大小写的意思  // 第二种写法：只有一个参数：正则表达式  let regex2 = new RegExp(/xyz/i);  // 当然还可以使用字面量的方式去">
+<meta name="twitter:description" content="正则扩展 正则对象ES5中的正则对象">
 
 
 
@@ -394,7 +394,8 @@
 
       
         <h1 id="正则扩展"><a href="#正则扩展" class="headerlink" title="正则扩展"></a>正则扩展</h1><ol>
-<li>正则对象<br>ES5中的正则对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 第一种写法： 第一个参数是字符串，第二个参数是修饰符</span></span><br><span class="line">  <span class="keyword">let</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'xyz'</span>, <span class="string">'i'</span>); <span class="comment">// 第二个参数i是忽略大小写的意思</span></span><br><span class="line">  <span class="comment">// 第二种写法：只有一个参数：正则表达式</span></span><br><span class="line">  <span class="keyword">let</span> regex2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/i</span>);</span><br><span class="line">  <span class="comment">// 当然还可以使用字面量的方式去定义一个正则对象 let regex2 = /xyz/i;</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex.flags) <span class="comment">// flags是ES6新增加的一个获取正则对象修饰符的属性，输出正则对象的修饰符</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex2.flags) <span class="comment">// 输出正则表达式的修饰符</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex.test(<span class="string">'xyz123'</span>), regex2.test(<span class="string">'xyz123'</span>))</span><br><span class="line">  <span class="comment">// 输出： true true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>正则对象<br>ES5中的正则对象<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 第一种写法： 第一个参数是字符串，第二个参数是修饰符</span></span><br><span class="line">  <span class="keyword">let</span> regex = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'xyz'</span>, <span class="string">'i'</span>); <span class="comment">// 第二个参数i是忽略大小写的意思</span></span><br><span class="line">  <span class="comment">// 第二种写法：只有一个参数：正则表达式</span></span><br><span class="line">  <span class="keyword">let</span> regex2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/i</span>);</span><br><span class="line">  <span class="comment">// 当然还可以使用字面量的方式去定义一个正则对象 let regex2 = /xyz/i;</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex.flags) <span class="comment">// flags是ES6新增加的一个获取正则对象修饰符的属性，输出正则对象的修饰符</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex2.flags) <span class="comment">// 输出正则表达式的修饰符</span></span><br><span class="line">  <span class="built_in">console</span>.log(regex.test(<span class="string">'xyz123'</span>), regex2.test(<span class="string">'xyz123'</span>))</span><br><span class="line">  <span class="comment">// 输出： true true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>ES6中增加了一种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数是正则表达式，还能有第二个参数</span></span><br><span class="line"><span class="comment">// ES6允许第一个参数是正则表达式，也允许第二个参数去覆盖正则表达式的修饰符</span></span><br><span class="line"><span class="keyword">let</span> regex3 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/xyz/ig</span>, <span class="string">'i'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(regex3.flags) <span class="comment">// 输出 'i'</span></span><br></pre></td></tr></table></figure></p>
@@ -446,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/29/nodejs_review4/" rel="next" title="node.js复习4：token和cookie的使用">
-                <i class="fa fa-chevron-left"></i> node.js复习4：token和cookie的使用
+              <a href="/2019/04/29/Function/" rel="next" title="Function原型对象">
+                <i class="fa fa-chevron-left"></i> Function原型对象
               </a>
             
           </div>
@@ -456,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/29/js遍历数组的方法/" rel="prev" title="数组和对象的深度复制">
-                数组和对象的深度复制 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/29/正则表达式/" rel="prev" title="正则表达式">
+                正则表达式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -537,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -548,7 +549,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -559,7 +560,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

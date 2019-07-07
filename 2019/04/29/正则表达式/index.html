@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="#正则表达式  创建正则对象的三种方式: let reg = new RegExp(&amp;#39;xyz&amp;#39;, &amp;#39;i&amp;#39;) 第一种写法： 第一个参数是字符串，第二个参数是修饰符 let reg2 = new RegExp(/xyz/i); 第二种写法：只有一个参数：正则表达式 let reg3 = /xyz/i 第三种方法，字面量（直接量）语法   ^方括号[]用法12345678">
+<meta name="description" content="正则表达式 创建正则对象的三种方式:">
 <meta name="keywords" content="正则表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://yoursite.com/2019/04/29/正则表达式/index.html">
 <meta property="og:site_name" content="masia">
-<meta property="og:description" content="#正则表达式  创建正则对象的三种方式: let reg = new RegExp(&amp;#39;xyz&amp;#39;, &amp;#39;i&amp;#39;) 第一种写法： 第一个参数是字符串，第二个参数是修饰符 let reg2 = new RegExp(/xyz/i); 第二种写法：只有一个参数：正则表达式 let reg3 = /xyz/i 第三种方法，字面量（直接量）语法   ^方括号[]用法12345678">
+<meta property="og:description" content="正则表达式 创建正则对象的三种方式:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-03T09:46:56.215Z">
+<meta property="og:updated_time" content="2019-07-07T04:21:18.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="#正则表达式  创建正则对象的三种方式: let reg = new RegExp(&amp;#39;xyz&amp;#39;, &amp;#39;i&amp;#39;) 第一种写法： 第一个参数是字符串，第二个参数是修饰符 let reg2 = new RegExp(/xyz/i); 第二种写法：只有一个参数：正则表达式 let reg3 = /xyz/i 第三种方法，字面量（直接量）语法   ^方括号[]用法12345678">
+<meta name="twitter:description" content="正则表达式 创建正则对象的三种方式:">
 
 
 
@@ -382,18 +382,18 @@
       
 
       
-        <p>#正则表达式</p>
+        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><ul>
+<li>创建正则对象的三种方式:<a id="more"></a>
 <ul>
-<li>创建正则对象的三种方式:<ul>
 <li><code>let reg = new RegExp(&#39;xyz&#39;, &#39;i&#39;)</code> 第一种写法： 第一个参数是字符串，第二个参数是修饰符</li>
 <li><code>let reg2 = new RegExp(/xyz/i);</code> 第二种写法：只有一个参数：正则表达式</li>
 <li><code>let reg3 = /xyz/i</code> 第三种方法，字面量（直接量）语法</li>
 </ul>
 </li>
-<li><code>^</code><h3 id="方括号-用法"><a href="#方括号-用法" class="headerlink" title="方括号[]用法"></a>方括号[]用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="regexp">/[abc]/</span>; <span class="comment">// 至少包含abc中的一个字符</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'kkk'</span>)) <span class="comment">// false</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'a'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'ak'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'ab'</span>)) <span class="comment">// true</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="regexp">/[^abc]/</span>; <span class="comment">// 匹配除了abc构成的组合以外的的任意字符，匹配到了，test()就返回true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'kkk'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'a'</span>)) <span class="comment">// false</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'af'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'abcg'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'abc'</span>)) <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><code>&quot;^&quot;</code><h3 id="方括号-用法"><a href="#方括号-用法" class="headerlink" title="方括号[]用法"></a>方括号[]用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="regexp">/[abc]/</span>; <span class="comment">// 至少包含abc中的一个字符</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'kkk'</span>)) <span class="comment">// false</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'a'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'ak'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'ab'</span>)) <span class="comment">// true</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="regexp">/[^abc]/</span>; <span class="comment">// 匹配除了abc构成的组合以外的的任意字符，匹配到了，test()就返回true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'kkk'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'a'</span>)) <span class="comment">// false</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'af'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'abcg'</span>)) <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'abc'</span>)) <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="用法："><a href="#用法：" class="headerlink" title="^用法："></a>^用法：</h3><ol>
+<h3 id="“-”用法："><a href="#“-”用法：" class="headerlink" title="“^”用法："></a>“^”用法：</h3><ol>
 <li><p>用法一：限定开头<br>比如 /^a/会匹配”abc”中的a，但是不会匹配”Abc”中的A</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\s/</span>) <span class="comment">// 匹配第一个空格</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">' a'</span>)); <span class="comment">// true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">let</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^ab[0-9]*a/</span>) <span class="comment">// 匹配开头ab+任意位数数字组合+a</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'ab69aafa'</span>)); <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(reg.test(<span class="string">'ab69b'</span>)) <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -482,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/29/js遍历数组的方法/" rel="next" title="数组和对象的深度复制">
-                <i class="fa fa-chevron-left"></i> 数组和对象的深度复制
+              <a href="/2019/04/29/ES6梳理-正则扩展/" rel="next" title="ES6梳理-正则扩展">
+                <i class="fa fa-chevron-left"></i> ES6梳理-正则扩展
               </a>
             
           </div>
@@ -492,8 +492,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/30/ES6梳理-字符串扩展/" rel="prev" title="ES6梳理-字符串扩展">
-                ES6梳理-字符串扩展 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/29/闭包/" rel="prev" title="闭包">
+                闭包 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -573,7 +573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -584,7 +584,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -595,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -638,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方括号-用法"><span class="nav-number">1.</span> <span class="nav-text">方括号[]用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法："><span class="nav-number">2.</span> <span class="nav-text">^用法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#量词"><span class="nav-number">3.</span> <span class="nav-text">量词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修饰符-attributes"><span class="nav-number">4.</span> <span class="nav-text">修饰符 attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则对象的方法-compile-exec-exec"><span class="nav-number">5.</span> <span class="nav-text">正则对象的方法 compile,exec,exec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持正则表达式的-String-对象的方法"><span class="nav-number">6.</span> <span class="nav-text">支持正则表达式的 String 对象的方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方括号-用法"><span class="nav-number">1.0.1.</span> <span class="nav-text">方括号[]用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“-”用法："><span class="nav-number">1.0.2.</span> <span class="nav-text">“^”用法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#量词"><span class="nav-number">1.0.3.</span> <span class="nav-text">量词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修饰符-attributes"><span class="nav-number">1.0.4.</span> <span class="nav-text">修饰符 attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则对象的方法-compile-exec-exec"><span class="nav-number">1.0.5.</span> <span class="nav-text">正则对象的方法 compile,exec,exec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持正则表达式的-String-对象的方法"><span class="nav-number">1.0.6.</span> <span class="nav-text">支持正则表达式的 String 对象的方法</span></a></li></ol></li></ol></div>
             
 
           </div>
