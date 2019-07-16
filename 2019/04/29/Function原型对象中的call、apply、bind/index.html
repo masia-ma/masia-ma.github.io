@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="Function.prototype call方法和apply方法都是Function.prototype的属性">
+<meta name="description" content="Function.prototype call、apply、bind都是Function.prototype的属性">
 <meta name="keywords" content="javascript,Function">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Function原型对象">
-<meta property="og:url" content="http://yoursite.com/2019/04/29/Function/index.html">
+<meta property="og:title" content="Function原型对象中的call、apply、bind">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/Function原型对象中的call、apply、bind/index.html">
 <meta property="og:site_name" content="masia">
-<meta property="og:description" content="Function.prototype call方法和apply方法都是Function.prototype的属性">
+<meta property="og:description" content="Function.prototype call、apply、bind都是Function.prototype的属性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-07T04:07:39.609Z">
+<meta property="og:updated_time" content="2019-07-16T12:12:40.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Function原型对象">
-<meta name="twitter:description" content="Function.prototype call方法和apply方法都是Function.prototype的属性">
+<meta name="twitter:title" content="Function原型对象中的call、apply、bind">
+<meta name="twitter:description" content="Function.prototype call、apply、bind都是Function.prototype的属性">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/29/Function/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/Function原型对象中的call、apply、bind/">
 
 
 
 
 
-  <title>Function原型对象 | masia</title>
+  <title>Function原型对象中的call、apply、bind | masia</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/Function/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/Function原型对象中的call、apply、bind/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="masia">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Function原型对象</h1>
+          <h1 class="post-title" itemprop="name headline">Function原型对象中的call、apply、bind</h1>
         
 
         <div class="post-meta">
@@ -394,11 +394,13 @@
 
       
         <h1 id="Function-prototype"><a href="#Function-prototype" class="headerlink" title="Function.prototype"></a>Function.prototype</h1><ul>
-<li>call方法和apply方法都是Function.prototype的属性<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.hasOwnProperty(<span class="string">'apply'</span>)); <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.hasOwnProperty(<span class="string">'call'</span>)); <span class="comment">// true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>call、apply、bind都是Function.prototype的属性<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.hasOwnProperty(<span class="string">'apply'</span>)); <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.hasOwnProperty(<span class="string">'call'</span>)); <span class="comment">// true</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Function</span>.prototype.hasOwnProperty(<span class="string">'bind'</span>)); <span class="comment">// true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="call、apply和bind方法"><a href="#call、apply和bind方法" class="headerlink" title="call、apply和bind方法"></a>call、apply和bind方法</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, a, b)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'masia'</span></span><br><span class="line">  &#125;</span><br><span class="line">  fn.call(obj, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// masia 1 2  fn函数体中this是obj</span></span><br><span class="line">  fn.apply(obj, [<span class="number">11</span>, <span class="number">22</span>]); <span class="comment">// masia 11 22  fn函数体中的this是obj</span></span><br><span class="line">  <span class="keyword">var</span> getFun = fn.bind(obj); <span class="comment">// masia 111 222  fn函数体中的this是obj</span></span><br><span class="line">  getFun(<span class="number">111</span>, <span class="number">222</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="call、apply方法"><a href="#call、apply方法" class="headerlink" title="call、apply方法"></a>call、apply方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name, a, b)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'masia'</span></span><br><span class="line">  &#125;</span><br><span class="line">  fn.call(obj, <span class="number">1</span>, <span class="number">2</span>); <span class="comment">// masia 1 2  fn函数体中this是obj</span></span><br><span class="line">  fn.apply(obj, [<span class="number">11</span>, <span class="number">22</span>]); <span class="comment">// masia 11 22  fn函数体中的this是obj</span></span><br><span class="line">  <span class="keyword">var</span> getFun = fn.bind(obj); <span class="comment">// masia 111 222  fn函数体中的this是obj</span></span><br><span class="line">  getFun(<span class="number">111</span>, <span class="number">222</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="bind方法用来重新定义方法中的this"><a href="#bind方法用来重新定义方法中的this" class="headerlink" title="bind方法用来重新定义方法中的this"></a>bind方法用来重新定义方法中的this</h3><p>与call、apply不同的是，使用fn.bind(self)并不是在调用的时候重新定义this的指向，而是在调用之前重新定义了方法中this的指向，fn.bind(self)这个表达式的值是一个方法体，所以需要一个变量去接收修改this后的fn方法体。fn.call(self)或者fn.apply(self)的值是fn执行的返回值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'arg'</span>,arg); <span class="comment">// arg this is arg</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name); <span class="comment">// obj1</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">    name: <span class="string">'obj1'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> obj2 = &#123;</span><br><span class="line">    name: <span class="string">'obj2'</span>,</span><br><span class="line">    fn: fn.bind(obj1)</span><br><span class="line">  &#125;</span><br><span class="line">  obj2.fn(<span class="string">'this is arg'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用新的变量去接收改变this指向后的fn函数</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'obj'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> newFn = fn.bind(obj);</span><br><span class="line">  fn(); <span class="comment">// Window &#123;postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …&#125;</span></span><br><span class="line">  newFn(); <span class="comment">// &#123;name: "obj"&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -431,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/29/ES5继承/" rel="next" title="ES5继承">
-                <i class="fa fa-chevron-left"></i> ES5继承
+              <a href="/2019/04/29/Object/" rel="next" title="Object原型对象">
+                <i class="fa fa-chevron-left"></i> Object原型对象
               </a>
             
           </div>
@@ -441,8 +443,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/29/js遍历数组的方法/" rel="prev" title="数组和对象的深度复制">
-                数组和对象的深度复制 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/29/ES6梳理-正则扩展/" rel="prev" title="ES6梳理-正则扩展">
+                ES6梳理-正则扩展 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -587,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Function-prototype"><span class="nav-number">1.</span> <span class="nav-text">Function.prototype</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#call、apply和bind方法"><span class="nav-number">2.</span> <span class="nav-text">call、apply和bind方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Function-prototype"><span class="nav-number">1.</span> <span class="nav-text">Function.prototype</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call、apply方法"><span class="nav-number">1.0.1.</span> <span class="nav-text">call、apply方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind方法用来重新定义方法中的this"><span class="nav-number">1.0.2.</span> <span class="nav-text">bind方法用来重新定义方法中的this</span></a></li></ol></li></ol></div>
             
 
           </div>
