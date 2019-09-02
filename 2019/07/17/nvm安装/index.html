@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/07/17/nvm安装/nvm_install2.png">
 <meta property="og:image" content="http://yoursite.com/2019/07/17/nvm安装/nvm_install3.png">
 <meta property="og:image" content="http://yoursite.com/2019/07/17/nvm安装/nvm_install5.png">
-<meta property="og:updated_time" content="2019-07-17T08:30:30.536Z">
+<meta property="og:updated_time" content="2019-07-17T08:59:57.635Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nvm安装">
 <meta name="twitter:description" content="nvm用来管理多个版本的node但是在安装nvm之前如果本机已经安装了node，那么需要先删除node所配置的环境变量，比如在系统环境变量中的NODE_HOME等">
@@ -402,11 +402,11 @@
 <h1 id="下载安装nvm"><a href="#下载安装nvm" class="headerlink" title="下载安装nvm"></a>下载安装nvm</h1><ol>
 <li><p><a href="https://github.com/coreybutler/nvm-windows/releases" target="_blank" rel="noopener">nvm</a>，并且选择nvm-setup.zip，下载并解压</p>
 </li>
-<li><p>选择安装目录，会让你选择两次<br>第一次选择的是nvm的系统目录，里面包含了nvm.exe等。我选择的目录是<code>D:\nvm\nvm</code><br>第二次选择的nodejs的一个快捷方式目录，我选择的是<code>D:\nvm\nodejs</code></p>
+<li><p>选择安装目录，会让你选择两次<br>第一次选择的是nvm的系统目录，里面包含了nvm.exe等。我选择的目录是<code>D:\nvm\nvm</code><br>第二次选择的nodejs是一个快捷方式目录，我选择的是<code>D:\nvm\nodejs</code></p>
 <ol>
 <li>其实nvm的原理就是在使用命令<code>nvm use nodejs版本</code>选择nodejs版本的时候，nvm帮你把<code>D:\nvm\nodejs</code>这个目录的指向换成了指定的版本号对应的nodejs目录。</li>
 <li>所有的nodejs的目录全部放在nvm中，比如你执行 <code>nvm use 12.6.0</code>，他就会先去 <code>D:\nvm\nvm</code> 中找有没有v12.6.0这个目录，如果有的话，他就把<code>D:\nvm\nodejs</code>这个文件目录的变成<code>D:\nvm\v12.6.0</code>的一个快捷方式。</li>
-<li>如果在<code>D:\nvm\nvm</code>中没有找到v12.6.0这个目录，那你必须先使用命令<code>nvm install 12.5.0</code>来把v12.5.0的nodejs安装包下载到<code>D:\nvm</code>中，然后再去使用<code>nvm use 12.6.0</code>修改<code>D:\nvm\nodejs</code>的指向。</li>
+<li>如果在<code>D:\nvm\nvm</code>中没有找到v12.6.0这个目录，那你必须先使用命令<code>nvm install 12.5.0</code>来把v12.5.0版本的nodejs安装包下载到<code>D:\nvm</code>中，然后再去使用<code>nvm use 12.6.0</code>修改<code>D:\nvm\nodejs</code>的指向。</li>
 </ol>
 </li>
 </ol>
@@ -416,7 +416,7 @@
 <li><p>配置环境变量</p>
 <ol>
 <li>用户环境变量<br>先在用户环境变量中的<code>path</code>中配置nvm的环境变量，在path中加入<code>D:\nvm</code>,其实配置环境变量就是你在命令框中执行nvm指令的时候，他要去在环境变量中配置的目录路径去找有没有nvm.cmd或者nvm.exe，有的话才能在命令行中正常执行。否则他就会输出<code>nvm不是内部或者外部指令</code></li>
-<li>系统环境变量<br>在系统环境变量中先定义两个变量<code>NVM_HOME=D:\nvm\nvm</code>和<code>NVM_SYMLINK=D:\nvm\nodejs</code>，然后再把这两个变量加到<code>path</code>中。（这里有点我有点疑惑的是网上的教程否使光在系统环境变量中写了<code>NVM_HOME=D:\nvm\nvm</code>并且加入path，然后在命令行执行<code>nvm -v</code>就正常执行了，而我这样配置却没有生效。所以我在用户环境变量中的path中写了<code>D:\nvm\nvm</code>，才可以正常执行<code>nvm</code>。但是执行node相关的命令是正常的，也就意味着系统可以通过<code>NVM_SYMLINK=D:\nvm\nodejs</code>这个环境变量来找到<code>D:\nvm\nodejs</code>目录下面的<code>node.exe</code><img src="/2019/07/17/nvm安装/nvm_install3.png" title="执行命令就是通过环境变量所指的目录去寻找该目录下面对应的可执行程序">
+<li>系统环境变量<br>在系统环境变量中先定义两个变量<code>NVM_HOME=D:\nvm\nvm</code>和<code>NVM_SYMLINK=D:\nvm\nodejs</code>，然后再把这两个变量加到<code>path</code>中。（这里有点我有点疑惑的是网上的教程只在系统环境变量中写了<code>NVM_HOME=D:\nvm\nvm</code>并且加入path，然后在命令行执行<code>nvm -v</code>就正常执行了，而我这样配置却没有生效。所以我在用户环境变量中的path中写了<code>D:\nvm\nvm</code>，才可以正常执行<code>nvm</code>。但是执行node相关的命令是正常的，也就意味着<code>NVM_SYMLINK=D:\nvm\nodejs</code>生效了，系统可以通过<code>NVM_SYMLINK=D:\nvm\nodejs</code>这个环境变量来找到<code>D:\nvm\nodejs</code>目录下面的<code>node.exe</code><img src="/2019/07/17/nvm安装/nvm_install3.png" title="执行命令就是通过环境变量所指的目录去寻找该目录下面对应的可执行程序">
 </li>
 </ol>
 </li>
@@ -475,6 +475,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/17/新疆电信文库项目/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -553,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -564,7 +568,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -575,7 +579,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
