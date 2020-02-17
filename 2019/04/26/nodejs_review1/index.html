@@ -85,10 +85,12 @@
 <meta property="og:site_name" content="masia">
 <meta property="og:description" content="深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T09:33:43.354Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/26/nodejs_review1/node_circle_reference.png">
+<meta property="og:updated_time" content="2020-02-17T06:51:02.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node.js复习1">
 <meta name="twitter:description" content="深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/26/nodejs_review1/node_circle_reference.png">
 
 
 
@@ -382,38 +384,40 @@
       
 
       
-        <h2 id="深入研究module-exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。"><a href="#深入研究module-exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。" class="headerlink" title="深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。"></a>深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。</h2><a id="more"></a>
-<h2 id="归根结底是探究module-exports与exports的关系，以及对象引用的指向问题"><a href="#归根结底是探究module-exports与exports的关系，以及对象引用的指向问题" class="headerlink" title="归根结底是探究module.exports与exports的关系，以及对象引用的指向问题"></a>归根结底是探究module.exports与exports的关系，以及对象引用的指向问题</h2><p>系统默认exports = module.exports，也就是说他们两个指向了同一个对象，下面来看三种情况：<br>假设在文件demo.js中：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is a function'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+        <blockquote>
+<p>深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>归根结底是探究module.exports与exports的关系，exports是module.exports的一个引用<br>系统默认exports = module.exports，也就是说他们两个指向了同一个对象，下面来看三种情况：</p>
+</blockquote>
+<h2 id="1-模块导出"><a href="#1-模块导出" class="headerlink" title="1. 模块导出"></a>1. 模块导出</h2><p>假设在文件demo.js中：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is a function'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p>情况一：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports.a = a</span><br><span class="line"><span class="built_in">module</span>.exports.fun = fun</span><br><span class="line">exports.b = b</span><br></pre></td></tr></table></figure>
-<p>  那么module.exports和exports向外暴露的是同一个对象，在test.js文件中访问demo.js：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> demo = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(demo)</span><br></pre></td></tr></table></figure>
-<p>  并在控制台打印，得到：</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;a: a, fun: [Function: fun], b: 3&#125;</span><br></pre></td></tr></table></figure>
+<li>情况一：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports.a = a</span><br><span class="line"><span class="built_in">module</span>.exports.fun = fun</span><br><span class="line">exports.b = b</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>情况二：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123; <span class="comment">//这样的写法，实际上已经将module.export指向一个新的对象了，但是exports指向的还是原来默认的对象</span></span><br><span class="line">  a: a,</span><br><span class="line">  fun: fun</span><br><span class="line">&#125;</span><br><span class="line">exports.b = b <span class="comment">//但是exports指向的是之前默认的对象</span></span><br></pre></td></tr></table></figure>
-<p>  最后向外暴露的是module.exports实际指向的对象，此时exports.x也失去了向外部暴露属性的功能，在test.js文件中访问demo.js</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> demo = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="keyword">var</span> &#123;b&#125; = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(demo)</span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br></pre></td></tr></table></figure>
-<p>  在控制台得到的结果为：</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;a: a, fun: [Funtion: fun]&#125;</span><br><span class="line">undefined</span><br></pre></td></tr></table></figure>
+</ul>
+<p>那么module.exports和exports向外暴露的是同一个对象，在test.js文件中访问demo.js：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> demo = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(demo)</span><br></pre></td></tr></table></figure></p>
+<p>并在控制台打印，得到：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;a: a, fun: [Function: fun], b: 3&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>情况二：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123; <span class="comment">//这样的写法，实际上已经将module.export指向一个新的对象了，但是exports指向的还是原来默认的对象</span></span><br><span class="line">  a: a,</span><br><span class="line">  fun: fun</span><br><span class="line">&#125;</span><br><span class="line">exports.b = b <span class="comment">//但是exports指向的是之前默认的对象</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>情况三：<br>  使用module.exports整体暴露</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  a: a,</span><br><span class="line">  fun: fun,</span><br><span class="line">  b: b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  在test中按需引入</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123;a, fun&#125; = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"><span class="built_in">console</span>.log(fun)</span><br></pre></td></tr></table></figure>
-<p>  在控制台得到的结果为：</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">12</span><br><span class="line">[Function: fun]</span><br></pre></td></tr></table></figure>
+</ul>
+<p>最后向外暴露的是module.exports实际指向的对象，此时exports.x也失去了向外部暴露属性的功能，在test.js文件中访问demo.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> demo = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="keyword">var</span> &#123;b&#125; = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(demo)</span><br><span class="line"><span class="built_in">console</span>.log(b)</span><br></pre></td></tr></table></figure></p>
+<p>在控制台得到的结果为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;a: a, fun: [Funtion: fun]&#125;</span><br><span class="line">undefined</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>情况三：<br>使用module.exports整体暴露<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  a: a,</span><br><span class="line">  fun: fun,</span><br><span class="line">  b: b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>注意：</p>
-<ol>
+</ul>
+<p>在test中按需引入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123;a, fun&#125; = <span class="built_in">require</span>(<span class="string">'./demo'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line"><span class="built_in">console</span>.log(fun)</span><br></pre></td></tr></table></figure></p>
+<p>在控制台得到的结果为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">12</span><br><span class="line">[Function: fun]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>注意：<ol>
 <li>如果要使用module.exports，在使用时尽量整体引入。</li>
 <li>如果要使用exports.x，千万不要在同一个文件中module.exports = {}，但是可以使用module.exports.xxx</li>
 </ol>
 </li>
 </ul>
-
+<h2 id="2-模块循环依赖"><a href="#2-模块循环依赖" class="headerlink" title="2. 模块循环依赖"></a>2. 模块循环依赖</h2><img src="/2019/04/26/nodejs_review1/node_circle_reference.png" title="node中模块的循环依赖">
       
     </div>
     
@@ -534,7 +538,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -545,7 +549,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -556,7 +560,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -599,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#深入研究module-exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。"><span class="nav-number">1.</span> <span class="nav-text">深入研究module.exports与exports各种组合用法，其意义在于更加深入理解这两个对象的本质特点，以便以后灵活使用。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归根结底是探究module-exports与exports的关系，以及对象引用的指向问题"><span class="nav-number">2.</span> <span class="nav-text">归根结底是探究module.exports与exports的关系，以及对象引用的指向问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模块导出"><span class="nav-number">1.</span> <span class="nav-text">1. 模块导出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-模块循环依赖"><span class="nav-number">2.</span> <span class="nav-text">2. 模块循环依赖</span></a></li></ol></div>
             
 
           </div>
@@ -619,7 +623,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

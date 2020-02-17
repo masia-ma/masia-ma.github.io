@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="title: 新疆电信文库项目tags:  项目categories: 项目   第1天（2019-07-17）">
+<meta name="description" content="title: mongodb和Chrome操作记录category:   mongodb Chrome   mogondb 常用命令">
 <meta name="keywords" content="javascript Html css 前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="masia">
-<meta property="og:url" content="http://yoursite.com/2019/07/17/新疆电信文库项目/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/02/17/mongodb和Chrome操作记录/index.html">
 <meta property="og:site_name" content="masia">
-<meta property="og:description" content="title: 新疆电信文库项目tags:  项目categories: 项目   第1天（2019-07-17）">
+<meta property="og:description" content="title: mongodb和Chrome操作记录category:   mongodb Chrome   mogondb 常用命令">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-02T11:07:38.979Z">
+<meta property="og:updated_time" content="2020-02-17T09:42:26.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="masia">
-<meta name="twitter:description" content="title: 新疆电信文库项目tags:  项目categories: 项目   第1天（2019-07-17）">
+<meta name="twitter:description" content="title: mongodb和Chrome操作记录category:   mongodb Chrome   mogondb 常用命令">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/17/新疆电信文库项目/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/17/mongodb和Chrome操作记录/">
 
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/17/新疆电信文库项目/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/17/mongodb和Chrome操作记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="masia">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T18:18:09+08:00">
-                2019-07-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-17T17:33:39+08:00">
+                2020-02-17
               </time>
             
 
@@ -361,53 +361,58 @@
 
       
         <hr>
-<p>title: 新疆电信文库项目<br>tags:</p>
+<p>title: mongodb和Chrome操作记录<br>category: </p>
 <ul>
-<li>项目<br>categories:</li>
-<li>项目</li>
+<li>mongodb</li>
+<li>Chrome</li>
 </ul>
 <hr>
-<h1 id="第1天（2019-07-17）"><a href="#第1天（2019-07-17）" class="headerlink" title="第1天（2019-07-17）"></a>第1天（2019-07-17）</h1><a id="more"></a>
-<ol>
-<li>搭建vue框架<br>由于之前把node升级到了比较高的10以上的版本，所以使用vue-cli2.9.3搭建项目时，遇到了project-name卡住的问题。根据查询资料得到vue-cli2.9.3不支持高版本的node去构建。所以把我安装了nvm工具，对nodejs的版本做了一个管理。</li>
-<li>重写路由文件架构<br>1.一般把router文件夹中的router.js 拆开写成index.js和router.js，index.js中一般新建一个Router对象，并且做一些vue-router的系统配置，在这里还可以做一些全局的路由守卫。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// router/index.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>2.在router.js中一般写具体的routes配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'_c/HelloWorld'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/'</span>,</span><br><span class="line">    name: <span class="string">'HelloWorld'</span>,</span><br><span class="line">    component: HelloWorld</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<ol start="3">
-<li><p>为整个从项目添加几个常用的快捷路径<br>比如： 在<code>build/webpack.base.conf.js</code>中设置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  extensions: [<span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>],</span><br><span class="line">  alias: &#123;</span><br><span class="line">    <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span>,</span><br><span class="line">    <span class="string">'@'</span>: resolve(<span class="string">'src'</span>),</span><br><span class="line">    <span class="string">'_c'</span>: resolve(<span class="string">'src/components'</span>),</span><br><span class="line">    <span class="string">'static'</span>: resolve(<span class="string">'static'</span>),</span><br><span class="line">    <span class="string">'config'</span>: resolve(<span class="string">'config'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>npm i npm@latest -g 安装最新的npm，就不会出现Error: EPERM: operation not permitted这种问题了，<br>安装element-ui<br>npm i element-ui -s</p>
-</li>
-<li>局部引入element-ui的组件<br>npm install babel-plugin-component -D报错Error: EPERM: operation not permitted, lstat ‘D:\工作项目2\新疆电信文件管理项目\前端\code\test_vue\node_modules\fsevents\node_modules’<br>先安装element-ui之后，再安装npm install babel-plugin-component -D，得已解决<br>在.babelrc中配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"plugins"</span>: [<span class="string">"transform-vue-jsx"</span>, <span class="string">"transform-runtime"</span>,</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"component"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"libraryName"</span>: <span class="string">"element-ui"</span>,</span><br><span class="line">        <span class="string">"styleLibraryName"</span>: <span class="string">"theme-chalk"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="第2天"><a href="#第2天" class="headerlink" title="第2天"></a>第2天</h1><ul>
-<li>views切分</li>
+<h1 id="mogondb-常用命令"><a href="#mogondb-常用命令" class="headerlink" title="mogondb 常用命令"></a>mogondb 常用命令</h1><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 准备(要保证mongodb的环境变量配置好之后， 在执行后面的操作)</span></span><br><span class="line">sudo mkdir -p /data/db     <span class="comment">#创建一个数据库 存储目录</span></span><br><span class="line"></span><br><span class="line">mongod --dbpath .          <span class="comment">#启动数据库（不启动数据库是不能进行连接的，所以在 express服务开启之前，先启动数据库）</span></span><br><span class="line">sudo mongod --config /usr/<span class="built_in">local</span>/etc/mongod.conf  <span class="comment">#这种方式启动有点错误</span></span><br><span class="line"><span class="comment"># 错误如下：</span></span><br><span class="line"><span class="comment">#( </span></span><br><span class="line"><span class="comment">#  Error opening config file: Is a directory</span></span><br><span class="line"><span class="comment"># try 'mongod --help' for more information</span></span><br><span class="line"><span class="comment">#)  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 正常启动后，在另外一个窗口打开</span></span><br><span class="line">mongo  <span class="comment">#会开启mongodb 的控制台， 在这里 可以曹错数据库（如果在之前没有执行mongod，那么 直接执行mongo将不会打开 mongodb的控制台）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># mongo 数据库操作</span></span><br><span class="line"></span><br><span class="line">show dbs;                  <span class="comment">#查看全部数据库</span></span><br><span class="line"></span><br><span class="line">show collections;          <span class="comment">#显示当前数据库中的集合（类似关系数据库中的表）</span></span><br><span class="line"></span><br><span class="line">show users;                <span class="comment">#查看当前数据库的用户信息</span></span><br><span class="line"></span><br><span class="line">use &lt;db name&gt;;             <span class="comment">#切换数据库跟mysql一样</span></span><br><span class="line"></span><br><span class="line">db.dropDatabase();         <span class="comment">#删除当前数据库</span></span><br><span class="line"></span><br><span class="line">db.mytable.drop();         <span class="comment">#删除当前数据库的 mytable 这张表（也叫集合）</span></span><br><span class="line"></span><br><span class="line">db;或者db.getName();        <span class="comment">#查看当前所在数据库</span></span><br><span class="line"></span><br><span class="line">db.help();                 <span class="comment">#显示数据库操作命令，里面有很多的命令 </span></span><br><span class="line">db.foo.help();             <span class="comment">#显示集合操作命令，同样有很多的命令，foo指的是当前数据库下，一个叫foo的集合，并非真正意义上的命令 </span></span><br><span class="line">db.foo.find();             <span class="comment">#对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据） </span></span><br><span class="line">db.foo.find( &#123; a : 1 &#125; );  <span class="comment">#对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1</span></span><br><span class="line"></span><br><span class="line">db.shutdownServer(&#123;force : <span class="literal">true</span>&#125;)  <span class="comment"># 停止数据库服务，可以不加参数 force</span></span><br><span class="line"></span><br><span class="line">db.createCollection(name, options) <span class="comment"># 创建集合</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># name: 要创建的集合名称</span></span><br><span class="line"><span class="comment"># options: 可选参数, 指定有关内存大小及索引的选项  </span></span><br><span class="line"><span class="comment"># options 可以是如下参数：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字段	类型	描述</span></span><br><span class="line"><span class="comment"># capped	布尔	（可选）如果为 true，则创建固定集合。固定集合是指有着固定大小的集合，当达到最大值时，它会自动覆盖最早的文档。</span></span><br><span class="line"><span class="comment"># 当该值为 true 时，必须指定 size 参数。</span></span><br><span class="line"><span class="comment"># autoIndexId	布尔	（可选）如为 true，自动在 _id 字段创建索引。默认为 false。</span></span><br><span class="line"><span class="comment"># size	数值	（可选）为固定集合指定一个最大值，以千字节计（KB）。</span></span><br><span class="line"><span class="comment"># 如果 capped 为 true，也需要指定该字段。</span></span><br><span class="line"><span class="comment"># max	数值	（可选）指定固定集合中包含文档的最大数量。</span></span><br><span class="line"><span class="comment"># eg : db.createCollection('user',&#123;capped : true, autoIndexId : true, size :6142800, max : 10000&#125;)</span></span><br><span class="line"><span class="comment"># 创建固定集合 user，整个集合空间大小 6142800 KB, 文档最大个数为 10000 个。</span></span><br></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
+<li>执行 <code>${collectionSchema}.create({ ...info })</code> 如果没有该集合，则会自动创建，如果有点话，则会往该集合中添加记录</li>
 </ul>
-<ol>
-<li>消息中心</li>
-<li>我的文库</li>
-<li>我的待办</li>
-<li>上传文件审核</li>
-<li>文件预览</li>
-<li>首页</li>
+<h1 id="chrom-浏览器启动"><a href="#chrom-浏览器启动" class="headerlink" title="chrom 浏览器启动"></a>chrom 浏览器启动</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">1.打开 Terminal 进入终端状态，默认的提示符应该是 $；</span><br><span class="line"></span><br><span class="line">2.进入 Chrome.app 目录；</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">cd</span> <span class="string">"/Applications/Google Chrome.app/Contents/MacOS/"</span></span><br><span class="line"></span><br><span class="line">3.将原先的启动脚本改个名字；</span><br><span class="line"></span><br><span class="line">$ sudo mv <span class="string">"Google Chrome"</span> Google.real</span><br><span class="line"></span><br><span class="line">4.使用管道操作创建新的启动脚本，注意其中加入你所需要的启动参数，这里的例子是启用单独的SOCKS5代理（你懂）以及隐身模式（--incognito 参数）</span><br><span class="line"></span><br><span class="line">$ sudo <span class="built_in">printf</span> <span class="string">'#!/bin/bash\ncd "/Applications/Google Chrome.app/Contents/MacOS"\n"/Applications/Google Chrome.app/Contents/MacOS/Google.real"</span></span><br><span class="line"><span class="string">-proxy-server=socks5://127.0.0.1:1080 --incognito</span></span><br><span class="line"><span class="string"> "$@"\n'</span> &gt; Google\ Chrome</span><br><span class="line"></span><br><span class="line">5.给新的脚本加上运行权限；　</span><br><span class="line"></span><br><span class="line">$ sudo chmod u+x <span class="string">"Google Chrome"</span></span><br><span class="line">这样，直接在 Applications 里面启动 Google Chrome 就是已经启用单独代理及隐身模式状态了。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6. 使用禁止安全策略 启动chrome</span><br><span class="line"></span><br><span class="line">$ sudo <span class="built_in">printf</span> <span class="string">'#!/bin/bash\ncd "/Applications/Google Chrome.app/Contents/MacOS"\n"/Applications/Google Chrome.app/Contents/MacOS/Google.real"</span></span><br><span class="line"><span class="string">--args --disable-web-security --user-data-dir "$@"\n'</span> &gt; Google\ Chrome</span><br><span class="line"></span><br><span class="line">7 带参数启动chrome(以下三种方式都可以)</span><br><span class="line"> </span><br><span class="line">open /Applications/Google\ Chrome.app/ --args --<span class="built_in">disable</span>-web-security --user-data-dir</span><br><span class="line"></span><br><span class="line">open -a <span class="string">"Google Chrome"</span> --args --<span class="built_in">disable</span>-web-security --user-data-dir</span><br><span class="line"></span><br><span class="line">/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome  --args  --<span class="built_in">disable</span>-web-security --user-data-dir</span><br><span class="line"></span><br><span class="line"><span class="string">"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"</span> --args --<span class="built_in">disable</span>-web-security</span><br></pre></td></tr></table></figure>
+<p>efaults read -g com.apple.mouse.scaling</p>
+<p>你会看到输出的是 “3”，这是初始速度 </p>
+<p>输入以下代码改变鼠标移动速度</p>
+<p>defaults write -g com.apple.mouse.scaling 7</p>
+<p>后面的数字 “7” 代表速度因子，建议设置在6-8之间，不然怕你受不住，调完之后重启电脑</p>
+<h1 id="hbuildX生成的本地资源目录"><a href="#hbuildX生成的本地资源目录" class="headerlink" title="hbuildX生成的本地资源目录"></a>hbuildX生成的本地资源目录</h1><p>/Users/masia/work/project/yzgs_app/yzgs_app/unpackage/resources/<strong>UNI</strong>A011DA1/www</p>
+<h1 id="as本地打包uniapp"><a href="#as本地打包uniapp" class="headerlink" title="as本地打包uniapp"></a>as本地打包uniapp</h1><ol>
+<li>配置应用 主体<br>替换 src/main/assets/apps/ 中的 Hello 文件夹 （替换为上面的 <strong>UNI</strong>A011DA1 文件夹）</li>
+<li><p>配置应用信息<br>修改 src/main/assets/data/ 下面的 dcloud_control.xml 文件中的内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改 appid 为 mainifest.js 文件中的id，</span></span><br><span class="line"><span class="comment">// appver 中的版本号 是 mainifest.js 中的version.name</span></span><br><span class="line">&lt;hbuilder version=<span class="string">"1.9.9.71156"</span>&gt;</span><br><span class="line">&lt;apps&gt;</span><br><span class="line">    &lt;app appid=<span class="string">"__UNI__A011DA1"</span> appver=<span class="string">"1.0.0"</span>/&gt;</span><br><span class="line">&lt;<span class="regexp">/apps&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>hbuilder&gt;</span><br><span class="line"><span class="comment">// 官方解释：</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 其中appid值必须与应用manifest.json中的id值完全一致；appver为应用的版本号，用于应用资源的升级，必须保持与manifest.json中的version -&gt; name值完全一致；version值为应用基座版本号（plus.runtime.innerVersion返回的值），不要随意修改。</span></span><br><span class="line"><span class="comment"> * /</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置应用的包名和版本号<br>打开 src/main/AndroidManifest.xml 文件</p>
+</li>
 </ol>
 <ul>
-<li>components切分</li>
+<li>package<br>其中package为应用的包名，采用反向域名格式，为应用的标识，例如： <code>io.uniapp.yzgs</code></li>
+<li>versionCode (没做也成功)<br>versionCode为应用的版本号（整数值），用于各应用市场的升级判断，建议与manifest.json中version -&gt; code值一致；(如100)</li>
+<li>versionName (没做也成功)<br>versionName为应用的版本名称（字符串），在系统应用管理程序中显示的版本号，建议与manifest.json中version -&gt; name值一致。（如 1.0.0)</li>
 </ul>
-<ol>
-<li>头部公共导航
-</li>
-<li>搜索框
-</li>
-<li>文件类型筛选条件选择栏</li>
-<li>左侧一级目录菜单</li>
-<li>文件树</li>
-<li>通用文件列表</li>
+<ol start="4">
+<li>配置应用名称 （没做也成功）</li>
 </ol>
-
+<p>打开src -&gt; main -&gt;res -&gt; values -&gt; strings.xml文件，修改“app_name”字段值，该值为安装到手机上桌面显示的应用名称，建议与manifest.json中name（基础配置中的应用名称）对应。</p>
+<ol start="5">
+<li>配置应用图标和启动界面 （没做也成功）<br>将应用的图标（文件名为icon.png）启动图片按照对应的尺寸拷贝到工程的app-&gt;src-&gt;main-&gt;res -&gt; drawable-XXX目录下。</li>
+</ol>
+<ul>
+<li>icon 是 应用logo图标 （144 * 144）</li>
+<li>splash 是 应用的启动图（144 * 144）</li>
+<li>push 是 应用的推送图标（1080 * 1882）</li>
+</ul>
+<ol start="6">
+<li>(非官方, 没做也成功)打开 build.gradle(app), 修改<br>android {<br>defaultConfig {<pre><code>applicationId &quot;io.uniapp.yzgs&quot; // 与 包名 一致
+versionCode 1 // 与 mainifest.js 中的 version.code 一致
+versionName &quot;1.0&quot; // 与 mainifest.js 中的 version.name 一致
+</code></pre> }<br>}</li>
+</ol>
+<p>io.dcloud.HBuilder<br>io.uniapp.yzgs</p>
+<h1 id="category"><a href="#category" class="headerlink" title="category"></a>category</h1><p>类别1:云主机；2：开源免费软件；3：项目型应用 4:crm销售品 5:合作伙伴引入产品;6：业务受理单（传文件）；7：合作分成（预订购，填写一个简单的表单）</p>
+<h1 id="hbuildX-连接夜神模拟器"><a href="#hbuildX-连接夜神模拟器" class="headerlink" title="hbuildX 连接夜神模拟器"></a>hbuildX 连接夜神模拟器</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Applications/Nox\ App\ Player.app/Contents/MacOS</span><br><span class="line">./adb connect 127.0.0.1:62001</span><br><span class="line">lsof -i tcp:62001 <span class="comment"># 查看 62001端口是否已经成功连接</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -431,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/17/nvm安装/" rel="next" title="nvm安装">
-                <i class="fa fa-chevron-left"></i> nvm安装
+              <a href="/2020/02/17/h5+操作/" rel="next" title="uni-app 拦截再按一次退出应用">
+                <i class="fa fa-chevron-left"></i> uni-app 拦截再按一次退出应用
               </a>
             
           </div>
@@ -441,8 +446,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/17/vue引入多个局部使用的ui库/" rel="prev" title="vue引入多个局部使用ui库">
-                vue引入多个局部使用ui库 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/17/uniapp本地打包搭建（安卓）/" rel="prev" title="uniapp本地打包搭建（安卓版本）">
+                uniapp本地打包搭建（安卓版本） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +527,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -533,7 +538,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -544,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -587,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第1天（2019-07-17）"><span class="nav-number">1.</span> <span class="nav-text">第1天（2019-07-17）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第2天"><span class="nav-number">2.</span> <span class="nav-text">第2天</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mogondb-常用命令"><span class="nav-number">1.</span> <span class="nav-text">mogondb 常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">2.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chrom-浏览器启动"><span class="nav-number">3.</span> <span class="nav-text">chrom 浏览器启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hbuildX生成的本地资源目录"><span class="nav-number">4.</span> <span class="nav-text">hbuildX生成的本地资源目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#as本地打包uniapp"><span class="nav-number">5.</span> <span class="nav-text">as本地打包uniapp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#category"><span class="nav-number">6.</span> <span class="nav-text">category</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hbuildX-连接夜神模拟器"><span class="nav-number">7.</span> <span class="nav-text">hbuildX 连接夜神模拟器</span></a></li></ol></div>
             
 
           </div>
@@ -607,7 +612,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
